@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Hockey AR | Ankara AI Hackathon '26</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- UI Layer -->
+    <div id="ui-layer" class="flex flex-col justify-between p-6">
+        <!-- Header -->
+        <header class="text-white">
+            <h1
+                class="text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">
+                AURA HOCKEY AR
+            </h1>
+            <p class="text-sm text-cyan-200 opacity-80 mt-1">Ankara Yapay Zeka Hackathon '26</p>
+        </header>
+
+        <!-- Status / Debug -->
+        <div id="status-panel" class="bg-black/50 backdrop-blur-md p-4 rounded-lg border border-white/10 w-fit">
+            <div class="flex items-center gap-2">
+                <div id="connection-dot" class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                <span id="status-text" class="text-xs font-mono text-gray-300">Başlatılıyor...</span>
+            </div>
+            <div class="mt-2 text-xs font-mono text-gray-400">
+                <p>FPS: <span id="fps-counter" class="text-white">0</span></p>
+                <p>Yapay Zeka: <span id="ai-status" class="text-white">Aktif</span></p>
+            </div>
+        </div>
+
+        <!-- Controls / Instructions -->
+        <div class="text-center mb-4">
+            <p
+                class="text-sm text-gray-400 bg-black/30 inline-block px-4 py-2 rounded-full backdrop-blur-sm border border-white/5">
+                Raketi kontrol etmek için <span class="text-cyan-400 font-bold">İşaret Parmağını</span> kaldır. Fren
+                yapmak için <span class="text-purple-400 font-bold">Yumruk</span> yap.
+            </p>
+        </div>
+    </div>
+
+    <!-- Start Screen Overlay -->
+    <div id="start-screen"
+        class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
+        <h1
+            class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 mb-8 drop-shadow-[0_0_20px_rgba(0,255,255,0.8)]">
+            AURA HOCKEY
+        </h1>
+        <button id="start-btn"
+            class="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xl rounded-full transition-all shadow-[0_0_20px_rgba(0,255,255,0.6)] hover:shadow-[0_0_40px_rgba(0,255,255,0.8)] hover:scale-105">
+            ARENAYA GİR
+        </button>
+        <p class="text-gray-400 mt-4 text-sm">Lütfen Kamera erişimine izin verin</p>
+    </div>
+
+    <!-- Hidden Video Element for MediaPipe -->
+    <video id="webcam" class="hidden" autoplay playsinline></video>
+
+    <!-- CDN Scripts -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <!-- MediaPipe Dependencies (Loaded globally, wrapped in Vision module) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+
+    <!-- Main Logic -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
