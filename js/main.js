@@ -51,11 +51,15 @@ class Game {
             this.sound.init();
 
             // Initialize Vision (requests camera)
-            await this.vision.init();
+            await this.vision.init(this.scene);
+
+            // Global access for triggers
+            window.game = this;
 
             // Initialize Physics
             this.physics.init(this.scene, this.sound);
             this.physics.onScoreUpdate = this.updateScoreUI.bind(this);
+            this.physics.onFeverUpdate = this.handleFeverMode.bind(this);
 
             // UI Elements
             this.fpsElem = document.getElementById('fps-counter');
@@ -162,6 +166,39 @@ class Game {
                 <span class="text-red-500">${ai}</span>
             `;
         }
+    }
+
+    handleFeverMode(active) {
+        const body = document.body;
+        const scoreDisplay = document.getElementById('score-display');
+
+        if (active) {
+            body.classList.add('fever-active');
+            if (scoreDisplay) scoreDisplay.classList.add('animate-pulse', 'border-red-500');
+            this.composer.passes[1].strength = Config.Gameplay.feverBloomMult; // Bloom increase
+        } else {
+            body.classList.remove('fever-active');
+            if (scoreDisplay) scoreDisplay.classList.remove('animate-pulse', 'border-red-500');
+            this.composer.passes[1].strength = Config.Graphics.bloomStrength;
+        }
+    }
+
+    shake(intensity = 0.1) {
+        const duration = 200;
+        const start = performance.now();
+        const originalPos = this.camera.position.clone();
+
+        const doShake = (now) => {
+            const elapsed = now - start;
+            if (elapsed < duration) {
+                this.camera.position.x = originalPos.x + (Math.random() - 0.5) * intensity;
+                this.camera.position.y = originalPos.y + (Math.random() - 0.5) * intensity;
+                requestAnimationFrame(doShake);
+            } else {
+                this.camera.position.copy(originalPos);
+            }
+        };
+        requestAnimationFrame(doShake);
     }
 }
 

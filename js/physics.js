@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import { Config } from './config.js';
+import { Effects } from './effects.js';
 
 export class Physics {
     constructor() {
         console.log("Fizik modülü yüklendi (Zero-Build Mode)");
         this.scene = null;
         this.sound = null;
+        this.effects = null;
 
         // Oyun Nesneleri
         this.paddle = null;
@@ -17,16 +19,20 @@ export class Physics {
         this.TABLE_WIDTH = Config.Table.width;
         this.TABLE_LENGTH = Config.Table.length;
 
-        // Scoring
+        // Scoring & State
         this.scorePlayer = 0;
         this.scoreAI = 0;
-        this.onScoreUpdate = null; // Callback for UI
+        this.rallyCount = 0;
+        this.isFeverMode = false;
+        this.onScoreUpdate = null;
+        this.onFeverUpdate = null; // Callback for UI
     }
 
     init(scene, sound) {
         console.log("Fizik Dünyası (Neon) Başlatılıyor");
         this.scene = scene;
         this.sound = sound;
+        this.effects = new Effects(scene);
 
         this.createTable();
         this.createPuck();
@@ -188,11 +194,11 @@ export class Physics {
             }
         }
 
-        // 2. AI Hareketi
-        this.updateAI(delta);
-
         // 3. Fizik Adımı
         this.stepPhysics(delta);
+
+        // 4. Efektler
+        this.effects.update(delta, this.puck.position);
     }
 
     updateAI(delta) {
@@ -208,15 +214,19 @@ export class Physics {
         let targetX = puckPos.x;
         // God Mode Tahmini: Duvar sektirmelerini hesapla
         if (isIncoming && Config.Paddle.lerpSpeed > 1.5) {
-            // Basit kestirim
-            const timeToIntercept = Math.abs((this.aiPaddle.position.z - puckPos.z) / this.puckVelocity.z);
-            const predictedX = puckPos.x + (this.puckVelocity.x * timeToIntercept);
+            const timeToIntercept = (this.aiPaddle.position.z - puckPos.z) / this.puckVelocity.z;
+            let predX = puckPos.x + (this.puckVelocity.x * timeToIntercept);
 
-            // Duvar yansıma simülasyonu
-            const wallX = this.TABLE_WIDTH / 2;
-            if (predictedX > wallX) targetX = wallX - (predictedX - wallX);
-            else if (predictedX < -wallX) targetX = -wallX - (predictedX + wallX);
-            else targetX = predictedX;
+            // Gelişmiş Duvar Tahmini (Predict Level 2)
+            const wallLimit = this.TABLE_WIDTH / 2 - Config.Puck.radius;
+            if (Config.Paddle.predictLevel >= 2) {
+                let offset = predX + wallLimit;
+                let range = wallLimit * 2;
+                let relative = offset % (2 * range);
+                if (relative < 0) relative += 2 * range;
+                predX = relative < range ? relative - wallLimit : 2 * range - relative - wallLimit;
+            }
+            targetX = predX;
         }
 
         // Z Pozisyonu (Defansif vs Ofansif)
@@ -228,7 +238,8 @@ export class Physics {
         targetZ = Math.max(-this.TABLE_LENGTH / 2 + 1, Math.min(-1, targetZ));
 
         // Lerp Hareketi
-        const speed = Config.Paddle.lerpSpeed * delta;
+        const speedMult = this.isFeverMode ? Config.Gameplay.feverSpeedMult : 1;
+        const speed = Config.Paddle.lerpSpeed * speedMult * delta;
         this.aiPaddle.position.x += (targetX - this.aiPaddle.position.x) * speed;
         this.aiPaddle.position.z += (targetZ - this.aiPaddle.position.z) * speed;
     }
@@ -242,29 +253,31 @@ export class Physics {
         }
 
         // --- 1. Hareket ---
-        const velocityStep = this.puckVelocity.clone().multiplyScalar(delta);
+        const speedMult = this.isFeverMode ? Config.Gameplay.feverSpeedMult : 1;
+        const velocityStep = this.puckVelocity.clone().multiplyScalar(delta * speedMult);
         this.puck.position.add(velocityStep);
 
         // --- 2. Duvar Çarpışması (X) ---
         const limitX = this.TABLE_WIDTH / 2 - Config.Puck.radius;
-        if (this.puck.position.x > limitX || this.puck.position.x < -limitX) {
+        if (Math.abs(this.puck.position.x) > limitX) {
             this.puckVelocity.x *= -1;
             this.puck.position.x = Math.sign(this.puck.position.x) * limitX;
             this.sound.playEdgeSound(this.puckVelocity.length());
+            this.effects.createExplosion(this.puck.position, 0x00FFFF);
         }
 
         // --- 3. Gol Kontrolü (Z) ---
         const limitZ = this.TABLE_LENGTH / 2;
-        if (this.puck.position.z > limitZ) {
-            this.scoreAI++;
+        if (Math.abs(this.puck.position.z) > limitZ) {
+            const playerScored = this.puck.position.z < -limitZ;
+            if (playerScored) this.scorePlayer++; else this.scoreAI++;
+
+            this.rallyCount = 0;
+            this.setFeverMode(false);
+
             if (this.onScoreUpdate) this.onScoreUpdate(this.scorePlayer, this.scoreAI);
             this.sound.playGoalSound();
-            this.servePuck(-1); // AI Başlar
-        } else if (this.puck.position.z < -limitZ) {
-            this.scorePlayer++;
-            if (this.onScoreUpdate) this.onScoreUpdate(this.scorePlayer, this.scoreAI);
-            this.sound.playGoalSound();
-            this.servePuck(1); // Oyuncu Başlar
+            this.servePuck(playerScored ? 1 : -1);
         }
 
         // --- 4. Raket Çarpışması ---
@@ -301,17 +314,37 @@ export class Physics {
             newSpeed = Math.max(newSpeed, 10); // Minimum hız
 
             this.puckVelocity.reflect(normal.negate()).normalize().multiplyScalar(newSpeed);
+            this.puck.position.add(normal.multiplyScalar(minDist - dist));
 
-            // Çakışmayı gider (Overlap fix)
-            const overlap = minDist - dist;
-            this.puck.position.add(normal.multiplyScalar(overlap));
+            // Rally & Fever Logic
+            this.rallyCount++;
+            if (this.rallyCount >= Config.Gameplay.rallyThreshold && !this.isFeverMode) {
+                this.setFeverMode(true);
+            }
 
-            // Ses
             this.sound.playCollisionSound(newSpeed);
+            this.effects.createExplosion(this.puck.position, paddle === this.paddle ? Config.Paddle.colorPlayer : Config.Paddle.colorAI);
 
-            // Görsel Efekt (Puck Rengi Parlasın)
-            this.puck.material.emissiveIntensity = 5;
-            setTimeout(() => { if (this.puck) this.puck.material.emissiveIntensity = Config.Puck.lightIntensity; }, 100);
+            // Camera Shake Trigger
+            if (window.game && window.game.shake) window.game.shake(speed / 40);
+        }
+    }
+
+    setFeverMode(active) {
+        this.isFeverMode = active;
+        if (this.onFeverUpdate) this.onFeverUpdate(active);
+
+        // Görsel Geri Bildirim
+        const puckMat = this.puck.material;
+        const puckLight = this.puck.children.find(c => c instanceof THREE.PointLight);
+
+        if (active) {
+            puckMat.emissiveIntensity = 8;
+            if (puckLight) puckLight.intensity = 15;
+            console.log("🔥 FEVER MODE ACTIVE!");
+        } else {
+            puckMat.emissiveIntensity = 2;
+            if (puckLight) puckLight.intensity = 2;
         }
     }
 }

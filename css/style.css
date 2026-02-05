@@ -1,7 +1,8 @@
 body {
     margin: 0;
     overflow: hidden;
-    background-color: #050505; /* Deep dark background */
+    background-color: #050505;
+    /* Deep dark background */
     font-family: 'Inter', sans-serif;
     color: white;
 }
@@ -22,10 +23,34 @@ body {
     width: 100%;
     height: 100%;
     z-index: 2;
-    pointer-events: none; /* Let clicks pass through to canvas */
+    pointer-events: none;
+    /* Let clicks pass through to canvas */
 }
 
 /* Ensure UI elements that need interaction have pointer-events: auto */
 .interactive {
     pointer-events: auto;
+}
+
+/* Fever Mode Visuals */
+.fever-active #canvas-container {
+    filter: saturate(1.5) contrast(1.1);
+}
+
+@keyframes flash {
+    0% {
+        background-color: rgba(255, 0, 0, 0);
+    }
+
+    50% {
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    100% {
+        background-color: rgba(255, 0, 0, 0);
+    }
+}
+
+.fever-active #ui-layer {
+    animation: flash 1s infinite;
 }
