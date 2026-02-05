@@ -1,66 +1,92 @@
+import { Config } from './config.js';
+
 export class Sound {
     constructor() {
         this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-        this.buffers = {};
+        this.masterGain = null;
         this.enabled = true;
-        this.init();
+
+        // Ses türleri için osilatör konfigürasyonları Config'den alınır
     }
 
-    async init() {
-        // Resume context if suspended (browser policy)
+    init() {
+        // Tarayıcı politikası gereği kullanıcı etkileşimi beklenir
         if (this.ctx.state === 'suspended') {
-            window.addEventListener('click', () => this.ctx.resume(), { once: true });
+            const resumeAudio = () => {
+                this.ctx.resume();
+                console.log("Ses Motoru (Synth) Başlatıldı");
+                window.removeEventListener('click', resumeAudio);
+                window.removeEventListener('touchstart', resumeAudio);
+            };
+            window.addEventListener('click', resumeAudio);
+            window.addEventListener('touchstart', resumeAudio);
         }
 
-        await this.loadSounds();
-        console.log("Ses motoru hazır (Varlık tabanlı)");
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.value = Config.Audio.masterVolume;
+        this.masterGain.connect(this.ctx.destination);
     }
 
-    async loadSounds() {
-        const files = {
-            'hit': 'assets/audio/hit1.ogg',
-            'edge': 'assets/audio/edge1.ogg',
-            'goal': 'assets/audio/goal1.ogg'
-        };
+    /**
+     * Prosedürel Ses Sentezleyicisi
+     * Dosya yüklemek yok. Anlık matematiksel dalga üretimi.
+     */
+    playTone(type, frequency, duration, decay) {
+        if (this.ctx.state === 'suspended' || !this.enabled) return;
 
-        for (const [name, path] of Object.entries(files)) {
-            try {
-                const response = await fetch(path);
-                const arrayBuffer = await response.arrayBuffer();
-                this.buffers[name] = await this.ctx.decodeAudioData(arrayBuffer);
-            } catch (e) {
-                console.error(`Ses yükleme hatası (${name}):`, e);
-            }
-        }
-    }
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
 
-    playSound(name, volume = 1.0) {
-        if (!this.enabled || !this.buffers[name]) return;
+        osc.type = type;
+        osc.frequency.setValueAtTime(frequency, this.ctx.currentTime);
 
-        const source = this.ctx.createBufferSource();
-        source.buffer = this.buffers[name];
+        // Zarf (Envelope) - ADSR benzeri (Attack çok kısa, Decay var)
+        gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(1, this.ctx.currentTime + 0.01); // Attack
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration + decay); // Decay
 
-        const gainNode = this.ctx.createGain();
-        gainNode.gain.value = volume;
+        osc.connect(gain);
+        gain.connect(this.masterGain);
 
-        source.connect(gainNode);
-        gainNode.connect(this.ctx.destination);
-
-        source.start(0);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration + decay + 0.1);
     }
 
     playCollisionSound(velocity) {
-        // Velocity (0-20) -> Volume (0.2-1.0)
-        const volume = Math.min(Math.max(velocity / 20, 0.2), 1.0);
-        this.playSound('hit', volume);
+        // Hıza göre frekans ve ses yüksekliği modülasyonu
+        // Hızlı vuruşlar = Daha yüksek frekans (tiz), daha yüksek ses
+        const intensity = Math.min(velocity / 30, 1.0);
+        const freq = Config.Audio.synth.hit.freqBase + (intensity * 400);
+
+        this.playTone(
+            Config.Audio.synth.hit.type,
+            freq,
+            0.05,
+            Config.Audio.synth.hit.decay
+        );
     }
 
     playEdgeSound(velocity) {
-        const volume = Math.min(Math.max(velocity / 20, 0.2), 0.8);
-        this.playSound('edge', volume);
+        const intensity = Math.min(velocity / 30, 1.0);
+        const freq = Config.Audio.synth.wall.freqBase + (intensity * 200);
+
+        this.playTone(
+            Config.Audio.synth.wall.type,
+            freq,
+            0.05,
+            Config.Audio.synth.wall.decay
+        );
     }
 
     playGoalSound() {
-        this.playSound('goal', 1.0);
+        // Basit bir arpej (Zafer melodisi)
+        const now = this.ctx.currentTime;
+        const notes = [440, 554, 659, 880]; // A Major
+
+        notes.forEach((freq, i) => {
+            setTimeout(() => {
+                this.playTone('sine', freq, 0.2, 0.3);
+            }, i * 100);
+        });
     }
 }

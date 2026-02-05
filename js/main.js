@@ -27,6 +27,12 @@ class Game {
         this.controls = null;
         this.clock = new THREE.Clock();
 
+        // UI Refs
+        this.fpsElem = null;
+        this.scoreElem = null;
+        this.framecount = 0;
+        this.lastUpdateTime = 0;
+
         this.init();
     }
 
@@ -49,6 +55,11 @@ class Game {
 
             // Initialize Physics
             this.physics.init(this.scene, this.sound);
+            this.physics.onScoreUpdate = this.updateScoreUI.bind(this);
+
+            // UI Elements
+            this.fpsElem = document.getElementById('fps-counter');
+            this.scoreElem = document.getElementById('score-display'); // We'll add this to index.html if missing
 
             // Start Loop
             this.animate();
@@ -75,20 +86,21 @@ class Game {
         this.renderer.toneMapping = THREE.ReinhardToneMapping;
         container.appendChild(this.renderer.domElement);
 
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0x404040, 1.5); // Soft white light
+        // Lights (Neon Atmosfer)
+        const ambientLight = new THREE.AmbientLight(0x000000); // Ortam ışığını kapat (sadece neonlar), ya da çok kısık
         this.scene.add(ambientLight);
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-        dirLight.position.set(0, 10, 10);
-        this.scene.add(dirLight);
+        // Sahneye genel bir morumsu loşluk
+        const hemisphereLight = new THREE.HemisphereLight(0x220033, 0x000000, 0.5);
+        this.scene.add(hemisphereLight);
 
-        // OrbitControls (Development Only - optional to keep or disable later)
+        // OrbitControls (Development Only)
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
+        this.controls.maxPolarAngle = Math.PI / 2.2; // Kameranın masanın altına girmesini engelle
 
-        // Post-Processing (Bloom)
+        // Post-Processing (Bloom - Glow Effect)
         const renderScene = new RenderPass(this.scene, this.camera);
 
         const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
@@ -124,7 +136,32 @@ class Game {
 
         // Render
         this.composer.render();
-        // UI updates could go here (FPS, Status)
+
+        // UI updates
+        this.updateFPS();
+    }
+
+    updateFPS() {
+        this.framecount++;
+        const now = performance.now();
+        if (now - this.lastUpdateTime > 1000) {
+            if (this.fpsElem) {
+                this.fpsElem.textContent = this.framecount;
+            }
+            this.framecount = 0;
+            this.lastUpdateTime = now;
+        }
+    }
+
+    updateScoreUI(player, ai) {
+        const scoreDisplay = document.getElementById('score-display');
+        if (scoreDisplay) {
+            scoreDisplay.innerHTML = `
+                <span class="text-cyan-400">${player}</span> 
+                <span class="text-white mx-2">:</span> 
+                <span class="text-red-500">${ai}</span>
+            `;
+        }
     }
 }
 

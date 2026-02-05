@@ -1,62 +1,65 @@
 /**
  * Oyun Konfigürasyonu
- * Kolay ayarlama ve ölçeklenebilirlik için merkezi ayarlar.
- * 'Ölçeklenebilirlik' hackathon kriteri için veriyi mantıktan ayırır.
+ * 'Zero-Build' ve 'Ölçeklenebilirlik' ilkelerine uygun merkezi ayarlar.
  */
 export const Config = {
-    // Masa Boyutları (Birim)
+    // Masa Boyutları
     Table: {
-        width: 10,
-        length: 18,
+        width: 12,
+        length: 22,
         wallHeight: 0.5,
-        friction: 0.998,
+        friction: 0.992,
+        gridSize: 20
     },
 
     // Pak Ayarları
     Puck: {
-        radius: 0.5,
-        height: 0.2,
-        initialSpeed: 5,
-        maxSpeed: 25,
-        mass: 1, // Normalize edilmiş
-        color: 0xff00ff,
-        emissive: 0xff00ff,
+        radius: 0.6,
+        height: 0.25,
+        initialSpeed: 10,
+        maxSpeed: 40,
+        color: 0xFF00FF, // Magenta Neon
+        lightIntensity: 2
     },
 
     // Raket Ayarları
     Paddle: {
-        radius: 0.6,
-        height: 0.3,
-        colorPlayer: 0x00ffff,
-        colorAI: 0xff0000,
-        brakeColor: 0xff3300, // Fren yapıldığında (Yumruk hareketi)
+        radius: 0.8,
+        height: 0.4,
+        colorPlayer: 0x00FFFF, // Cyan Neon
+        colorAI: 0xFF3333,    // Red Neon
+        brakeColor: 0xFFAA00, // Orange (Fren)
+        lerpSpeed: 2.0 // AI Zorluk Çarpanı
     },
 
-    // Yapay Zeka Zorluk Ayarları
+    // Yapay Zeka (AI)
     AI: {
-        lerpSpeed: 2.0, // Reaksiyon hızı
-        defensiveLine: -7,
-        attackLine: -4,
+        predictSteps: 60, // Geleceği tahmin etme adım sayısı
+        errorMargin: 0.5, // İnsan hatası simülasyonu
     },
 
-    // Görseller & Son İşleme (Post-Processing)
+    // Görsel & Efektler
     Graphics: {
-        bloomStrength: 1.2,
-        bloomRadius: 0.5,
+        bloomStrength: 2.5,
+        bloomRadius: 0.4,
         bloomThreshold: 0.1,
-        // "Skin" / Gelir Modeli potansiyeli
-        theme: 'neon_cyberpunk',
+        floorColor: 0x050510,
+        gridColor: 0x222244
     },
 
-    // Görüş / Kontroller
-    Controls: {
-        smoothing: 0.15, // Düşük değer daha pürüzsüz ama daha gecikmeli
-        fistThreshold: 3, // Katlanan parmak sayısı
-    },
-
-    // Ses
+    // Ses (Prosedürel Synth)
     Audio: {
-        baseFreq: 200,
-        maxFreqOffset: 600,
+        masterVolume: 0.3,
+        synth: {
+            hit: { type: 'square', decay: 0.1, freqBase: 200 },
+            wall: { type: 'triangle', decay: 0.15, freqBase: 100 },
+            goal: { type: 'sawtooth', duration: 0.5 }
+        }
+    },
+
+    // Kontroller
+    Controls: {
+        smoothing: 0.12, // Düşük = Daha smooth
+        fistThreshold: 3 // Kapanan parmak sayısı
     }
 };
