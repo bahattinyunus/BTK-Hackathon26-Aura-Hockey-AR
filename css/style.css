@@ -54,3 +54,53 @@ body {
 .fever-active #ui-layer {
     animation: flash 1s infinite;
 }
+
+/* Omega Animations */
+@keyframes biosTyping {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bios-line {
+    animation: biosTyping 0.1s forwards;
+}
+
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+#bios-boot p {
+    margin: 2px 0;
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+}
+
+/* Scrollbar & Typography Fixes */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
+}
+
+#narrative-text {
+    letter-spacing: 0.02em;
+    word-spacing: 0.05em;
+}

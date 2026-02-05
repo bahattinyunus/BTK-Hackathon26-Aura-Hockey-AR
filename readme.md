@@ -1,107 +1,54 @@
-# 🌌 Aura Hockey AR
+# Aura Hockey AR: The Omega Singularity 🪐♾️
+**Ankara Yapay Zeka Hackathon 2026 | Technical Masterpiece & Sensory Experience**
 
-### *Ankara AI Hackathon '26 - "Yapay Zeka ile Geleceği Birlikte İnşa Ediyoruz"*
+[![Project Status: Omega](https://img.shields.io/badge/Status-Omega_Stabilized-cyan.svg?style=for-the-badge&logo=probot)](https://github.com/bahat/Aura-Hockey-AR)
+[![Tech: Three.js](https://img.shields.io/badge/Engine-Three.js_r150-white.svg?style=for-the-badge&logo=three.js)](https://threejs.org/)
+[![UI: Neo-Ankara](https://img.shields.io/badge/Interface-Aura_OS_v4.0-purple.svg?style=for-the-badge)](https://tailwindcss.com/)
 
-> **HACKATHON MOTTOSU:**
-> *"En çok kod yazan değil, en iyi ürünü çıkaran kazanır."*
->
-> **AI KODLAYICI DİREKTİFİ:**
-> Bu proje, **Ankara AI Hackathon 2026**'nın "Ürün & Problem Uyumu" ve "Teknik Yetkinlik" kriterlerinden tam puan (100/100) alacak şekilde tasarlanmıştır. Ucanble Hub entegrasyonuna hazır, uçtan uca çalışan bir sistemdir. Kod yapısı sade, modüler ve gösterişli (Wow Effect) olmalıdır.
+> "Kodun kusursuz olduğu noktada, teknoloji büyüye dönüşür." 
 
----
+## 🌌 Vizyon: Neo-Ankara'nın Kalbine Yolculuk
+Aura Hockey AR, klasik bir Air Hockey oyununun çok ötesinde; **Meta-Görselleştirme, Prosedürel Ses Tasarımı ve Nöral El Takibi** teknolojilerinin birleştiği bir "Teknoloji Sanatı"dır. 2026 Ankara yeraltı metro hatlarından ilham alan siberpunk atmosferiyle oyuncuyu içine çeken bir "Aura OS" işletim sistemi deneyimi sunar.
 
-## 🌟 Proje Vizyonu ve Problem Çözümü
+## 🚀 Omega Edition: Teknik Üstünlükler
 
-**Problem:** Dijital çağda fiziksel hareketsizlik ve erişilebilirlik sorunları. Geleneksel VR/AR sporları pahalı donanımlar gerektirir.
-**Çözüm:** **Aura Hockey AR**; yapay zeka teknolojilerini (MediaPipe) kullanarak, herhangi bir ek donanım gerektirmeden, her tarayıcıyı bir spor sahasına dönüştüren "Mekansal Web" (Spatial Web) ürünüdür.
+### 1. 🧠 Neural Gesture Control (Mediapipe API)
+- **Zero-Latency Tracking**: WebWorkers hiyerarşisiyle işlenen el verisi, pürüzsüz bir AR kontrolü sağlar.
+- **Aura Burst (Ultimate)**: 1.5 saniyelik "yumruk" hareketiyle şarj olan ve pakı ışık hızında fırlatan bir "Süper Yetenek" mekaniği.
 
-* **Sınırsız Erişim:** Pahalı gözlüklere son. Sadece bir webcam yeterli.
-* **Ucanble Hub Entegrasyonu:** Tek tıkla yayınlanan, geniş kitlelere ulaşan ölçeklenebilir bir Web uygulaması.
+### 2. 💎 "Infinity Reflect" Shader Engine
+- **Dynamic Cube Mapping**: Pak ve raketler üzerindeki yansımalar statik değildir; `CubeCamera` ile arenadaki tüm neonlar gerçek zamanlı olarak yüzeylere yansır.
+- **Global Environment Mapping**: Sahnedeki her metalik yüzey, `PMREMGenerator` ile oluşturulan HDR bir gökyüzü haritasını yansıtarak "Ray-Traced" derinliği kazandırır.
 
----
+### 3. 🥁 "Pulse of Neo-Ankara" Procedural Music
+- **State-Reactive Techno**: Müzik önceden kaydedilmemiştir. Oyunun o anki gerilimine (Rally Count) göre; Kick, Bass, Hi-hat ve Melodi katmanları `Web Audio API` ile anlık olarak bestelenir.
+- **Audio-Reactive Grid**: Arenadaki ızgaralar müziğin şiddetiyle (FFT Analysis) senkronize olarak parlar.
 
-## 🏆 Jüri & Değerlendirme Uyumluluğu (100 Tam Puan Hedefi)
+### 4. 🎥 Cinemachine & Spring Physics
+- **Action Cam**: Kamera hıza ve konuma göre FOV değiştirir, zum yapar ve "Action" hissini en üst düzeye çıkarır.
+- **Slow-Motion Finish**: Galibiyet anında fizik motoru yavaşlar ve kamera kazananın etrafında 360 derecelik sinematik bir tur (Orbital Sweep) atar.
 
-Projemiz, yarışmanın 5 temel kriterine tam uyum sağlayacak şekilde mimarilendirilmiştir:
+## 🛠️ Kurulum ve Çalıştırma
+Aura Hockey AR, herhangi bir harici bağımlılık kurmadan doğrudan tarayıcıda çalışacak şekilde optimize edilmiştir.
 
-### 1. Teknik Yetkinlik (25 Puan)
-*   **Edge AI & Performans:** Bulut maliyeti yok. Tüm Computer Vision (Görü) işlemleri tarayıcıda (Client-Side) 60 FPS'de çalışır.
-*   **Custom Physics:** Eksen Hizalamalı Sınırlayıcı Kutu (AABB) çarpışma motoru sıfırdan yazılarak performans optimize edilmiştir.
-*   **Mimari:** "Zero-Build" yapısı ile saf ES Modülleri kullanılmıştır.
+1.  Repoyu klonlayın:
+    ```bash
+    git clone https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR.git
+    ```
+2.  Dizin içine girin:
+    ```bash
+    cd BTK-Hackathon26-Aura-Hockey-AR
+    ```
+3.  Bir yerel sunucu başlatın:
+    ```bash
+    python -m http.server 8000
+    ```
+4.  Tarayıcınızda açın: `http://localhost:8000`
 
-### 2. Ürün & Problem Uyumu (20 Puan)
-*   Gerçek bir kullanıcı ihtiyacına (Hareketsizlik & Eğlence) dokunur.
-*   "Yapay Zekayı Ürüne Dönüştürmek" hedefini tam karşılar; sadece bir demo değil, oynanabilir tam bir üründür.
-
-### 3. Yenilikçilik (15 Puan)
-*   **Orijinallik:** Klasik bir oyunu AR ile yeniden icat etmek.
-*   **Farklılaşma:** Raket kontrolünde "Jest Tabanlı Fizik" (Yumruk sıkınca fren yapma vb.) kullanarak rakiplerden ayrışır.
-
-### 4. Ticarileşme Potansiyeli (20 Puan)
-*   **Gelir Modeli:** Oyun içi kozmetik satışları (NFT Raketler, Neon Temalar) ve Web tabanlı Arcade abonelik sistemi için uygundur.
-*   **Pazar:** Hiper-basit (Hyper-casual) oyun pazarında anında ölçeklenebilir.
-
-### 5. Ölçeklenebilirlik & Sunum (20 Puan)
-*   **Config-Driven:** Tüm oyun dinamiği tek bir `config.js` dosyasından yönetilir.
-*   **Demo Hazır:** 1 dakikalık "Wow" faktörü yüksek tanıtım için görsel efektler (Bloom, Particles) maksimize edilmiştir.
-
----
-
-## 🛠 Teknik Plan & Mimari (30 Saatlik Akışa Uygun)
-
-Bu proje, hackathon'un 30 saatlik akışına (Fikir -> Mimari -> Core -> Ürün) göre optimize edilmiştir.
-
-*   **Motor:** `Three.js` (Görsel Şölen)
-*   **Algı:** `MediaPipe` (Yapay Zeka)
-*   **Stil:** `Tailwind CSS` (Hızlı UI)
-*   **Ses:** `Web Audio API` (Prosedürel)
+## 🏆 Hackathon Başarı Kriterleri
+- **Kullanıcı Deneyimi**: "Aura OS" BIOS açılış sekansı ile oyuncu ilk saniyeden itibaren evrene dahil edilir.
+- **Teknik İnovasyon**: Tarayıcı tabanlı AR dünyasında nadir görülen Dynamic Reflections ve Procedural Audio entegrasyonu.
+- **Performans**: Tüm bu ağır görsel efektlere rağmen Adaptive Quality motoru ile 60 FPS stabilizasyon.
 
 ---
-
-## 🎯 Uygulama Yol Haritası (Direktifler)
-
-### Faz 1: Teknik Plan & Mimari (0-5. Saat)
-*   **Sahne (`main.js`):** Neon siberpunk atmosferi kur. Bloom efektini aç. Performans bütçesini koru.
-*   **Veri Akışı:** Webcam -> MediaPipe -> 3D Dünya koordinat eşlemesini kur.
-
-### Faz 2: Core Geliştirme (5-15. Saat)
-*   **Vision (`vision.js`):** El takibini pürüzsüzleştir (Lerp Function). Titremeyi yok et.
-*   **AI Rakip (`physics.js`):** Basit bot yerine "Prediction" (Tahmin) algoritması kullanan zeki bir rakip yaz.
-
-### Faz 3: Ürünleştirme & Arayüz (15-25. Saat)
-*   **UI:** Skor tabelası, başlangıç ekranı ve "Oyun Bitti" ekranlarını Tailwind ile şık bir şekilde tasarla.
-*   **Ses (`sound.js`):** Vuruş hissiyatını (Juice) artırmak için dinamik ses sentezi ekle.
-
-### Faz 4: Test & Sunum Hazırlığı (25-30. Saat)
-*   **Hata Ayıklama:** Işıklandırma ve çarpışma kenar durumlarını (Edge Cases) test et.
-*   **Sunum:** Proje, jüri sunumunda "Canlı Demo" yapabilecek kararlılıkta olmalıdır.
-
----
-
-## 📂 Proje Yapısı
-
-```text
-/Ankara-AI-Hackathon-Aura-Hockey
-├── index.html          # Giriş & UI
-├── js/
-│   ├── main.js         # Sahne & Render Döngüsü
-│   ├── vision.js       # AI Görü İşleme (MediaPipe)
-│   ├── physics.js      # Oyun Fiziği & AI Bot
-│   ├── sound.js        # Ses Motoru
-│   └── config.js       # Merkezi Ayarlar (Ölçeklenebilirlik)
-└── css/
-    └── style.css       # Animasyonlar
-```
-
----
-
-## 🚀 Nasıl Çalıştırılır
-
-1.  Repoyu indirin.
-2.  Bir yerel sunucu başlatın (Örn: `Live Server` veya `python -m http.server`).
-3.  Tarayıcıda açın ve kameraya izin verin.
-4.  **Ucanble Hub** üzerinde yayınlanmaya hazırdır.
-
----
-
-*"Gelecek, kod satırlarında değil, yarattığın değerdedir."*
+**Developed with ❤️ and ☕ for BTK-Hackathon '26 Ankara.**

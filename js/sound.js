@@ -5,6 +5,11 @@ export class Sound {
         this.ctx = new (window.AudioContext || window.webkitAudioContext)();
         this.masterGain = null;
         this.enabled = true;
+        this.analyser = null;
+        this.dataArray = null;
+        this.bufferLength = 0;
+        this.tempo = 124;
+        this.rhythmTimer = null;
 
         // Ses türleri için osilatör konfigürasyonları Config'den alınır
     }
@@ -25,6 +30,25 @@ export class Sound {
         this.masterGain = this.ctx.createGain();
         this.masterGain.gain.value = Config.Audio.masterVolume;
         this.masterGain.connect(this.ctx.destination);
+
+        // Analyser
+        this.analyser = this.ctx.createAnalyser();
+        this.analyser.fftSize = 128; // Hızlı analiz
+        this.bufferLength = this.analyser.frequencyBinCount;
+        this.dataArray = new Uint8Array(this.bufferLength);
+        this.masterGain.connect(this.analyser);
+
+        this.startRhythm();
+    }
+
+    getAverageVolume() {
+        if (!this.analyser) return 0;
+        this.analyser.getByteFrequencyData(this.dataArray);
+        let values = 0;
+        for (let i = 0; i < this.bufferLength; i++) {
+            values += this.dataArray[i];
+        }
+        return (values / this.bufferLength) / 255.0; // 0-1 arası
     }
 
     /**
@@ -93,5 +117,39 @@ export class Sound {
                 this.playTone('sine', freq, 0.2, 0.3);
             }, i * 100);
         });
+    }
+
+    startRhythm() {
+        let step = 0;
+        const interval = (60 / this.tempo) / 2 * 1000; // 8th notes
+
+        this.rhythmTimer = setInterval(() => {
+            if (!this.enabled) return;
+            const rally = window.game?.physics?.rallyCount || 0;
+
+            // Kick on 1 and 3
+            if (step % 2 === 0) {
+                this.playTone('sine', 60, 0.1, 0.2); // Kick
+            }
+
+            // Hi-hat on off-beats (scales with rally)
+            if (step % 2 === 1 && rally > 4) {
+                this.playTone('noise', 10000, 0.02, 0.05); // Hat
+            }
+
+            // Bass synth on high rally
+            if (step % 4 === 2 && rally > 10) {
+                this.playTone('sawtooth', 40, 0.1, 0.4); // Bass
+            }
+
+            // Procedural Melody (Melodic Techno)
+            if (rally > 5 && (step === 3 || step === 7)) {
+                const notes = [440, 523, 587, 659]; // A Minor Pentatonic
+                const note = notes[Math.floor(Math.random() * notes.length)];
+                this.playTone('triangle', note, 0.05, 0.1);
+            }
+
+            step = (step + 1) % 8;
+        }, interval);
     }
 }
