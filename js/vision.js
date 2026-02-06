@@ -89,6 +89,9 @@ export class Vision {
             const landmarks = results.multiHandLandmarks[0];
             this.latestLandmarks = landmarks;
 
+            // Draw hand skeleton on canvas overlay
+            this.drawHandSkeleton(landmarks);
+
             // Update 3D Skeleton
             if (this.skeletonEnabled) this.updateSkeleton(landmarks);
 
@@ -106,6 +109,10 @@ export class Vision {
             if (statusText) statusText.innerText = "Sistem Aktif";
         } else {
             this.handData.isActive = false;
+
+            // Clear hand skeleton canvas
+            this.clearHandCanvas();
+
             const dot = document.getElementById('connection-dot');
             if (dot) dot.className = "w-3 h-3 rounded-full bg-red-500";
             const statusText = document.getElementById('status-text');
@@ -166,5 +173,66 @@ export class Vision {
                 this.landmarkMeshes[i].visible = true;
             }
         });
+    }
+
+    drawHandSkeleton(landmarks) {
+        const canvas = document.getElementById('hand-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Clear previous frame
+        ctx.clearRect(0, 0, width, height);
+
+        // MediaPipe Hand Connections
+        const connections = [
+            [0, 1], [1, 2], [2, 3], [3, 4],           // Thumb
+            [0, 5], [5, 6], [6, 7], [7, 8],           // Index
+            [0, 9], [9, 10], [10, 11], [11, 12],      // Middle
+            [0, 13], [13, 14], [14, 15], [15, 16],    // Ring
+            [0, 17], [17, 18], [18, 19], [19, 20],    // Pinky
+            [5, 9], [9, 13], [13, 17]                 // Palm
+        ];
+
+        // Draw connections (green lines)
+        ctx.strokeStyle = '#00ff88';
+        ctx.lineWidth = 2;
+        connections.forEach(([start, end]) => {
+            const startPoint = landmarks[start];
+            const endPoint = landmarks[end];
+
+            ctx.beginPath();
+            ctx.moveTo(startPoint.x * width, startPoint.y * height);
+            ctx.lineTo(endPoint.x * width, endPoint.y * height);
+            ctx.stroke();
+        });
+
+        // Draw landmarks (green dots)
+        ctx.fillStyle = '#00ff88';
+        landmarks.forEach((landmark, index) => {
+            const x = landmark.x * width;
+            const y = landmark.y * height;
+
+            ctx.beginPath();
+            ctx.arc(x, y, index === 8 ? 6 : 4, 0, 2 * Math.PI); // Index tip larger
+            ctx.fill();
+
+            // Glow effect for index finger tip
+            if (index === 8) {
+                ctx.strokeStyle = 'rgba(0, 255, 136, 0.5)';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+        });
+    }
+
+    clearHandCanvas() {
+        const canvas = document.getElementById('hand-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
