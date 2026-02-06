@@ -39,12 +39,27 @@
                 <p class="text-sm text-cyan-200 opacity-80 mt-1">Ankara Yapay Zeka Hackathon '26</p>
             </div>
 
-            <!-- Score Display -->
-            <div id="score-display"
-                class="bg-black/40 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md text-3xl font-bold tracking-widest font-mono shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                <span class="text-cyan-400">0</span>
-                <span class="text-white mx-2">:</span>
-                <span class="text-red-500">0</span>
+            <div class="flex items-start gap-4">
+                <!-- Score Display -->
+                <div id="score-display"
+                    class="bg-black/40 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md text-3xl font-bold tracking-widest font-mono shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                    <span class="text-cyan-400">0</span>
+                    <span class="text-white mx-2">:</span>
+                    <span class="text-red-500">0</span>
+                </div>
+
+                <!-- Webcam Preview -->
+                <div id="webcam-preview-container" class="relative">
+                    <video id="webcam-preview"
+                        class="w-40 h-28 rounded-xl border-2 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] object-cover"
+                        autoplay playsinline muted>
+                    </video>
+                    <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    <div
+                        class="absolute bottom-2 left-2 text-[10px] font-mono text-white/60 bg-black/50 px-2 py-1 rounded backdrop-blur-sm">
+                        AI TRACKING
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -130,7 +145,7 @@
         </div>
     </div>
 
-    <!-- Hidden Video Element for MediaPipe -->
+    <!-- Hidden Video Element for MediaPipe (kept for compatibility) -->
     <video id="webcam" class="hidden" autoplay playsinline></video>
 
     <!-- CDN Scripts -->

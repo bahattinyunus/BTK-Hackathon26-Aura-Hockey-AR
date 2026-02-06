@@ -70,6 +70,17 @@ export class Vision {
                 height: 720
             });
             camera.start();
+
+            // Connect webcam stream to preview element
+            const previewElement = document.getElementById('webcam-preview');
+            if (previewElement && this.videoElement.srcObject) {
+                previewElement.srcObject = this.videoElement.srcObject;
+            } else if (previewElement) {
+                // Wait for stream to be ready
+                this.videoElement.addEventListener('loadedmetadata', () => {
+                    previewElement.srcObject = this.videoElement.srcObject;
+                });
+            }
         }
     }
 
