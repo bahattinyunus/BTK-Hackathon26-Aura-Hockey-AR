@@ -247,13 +247,12 @@ class Game {
     }
 
     updateScoreUI(player, ai) {
-        const scoreDisplay = document.getElementById('score-display');
-        if (scoreDisplay) {
-            scoreDisplay.innerHTML = `
-                <span class="text-cyan-400">${player}</span> 
-                <span class="text-white mx-2">:</span> 
-                <span class="text-red-500">${ai}</span>
-            `;
+        const playerElem = document.getElementById('player-score');
+        const aiElem = document.getElementById('ai-score');
+        
+        if (playerElem && aiElem) {
+            playerElem.textContent = player;
+            aiElem.textContent = ai;
             this.triggerGlitch();
 
             // Update High Score if player leads
@@ -281,20 +280,17 @@ class Game {
         if (calBtn) {
             calBtn.addEventListener('click', () => {
                 this.addLog("INITIATING_CALIBRATION_SEQUENCE...");
-                alert("Kalibrasyon Modu: Lütfen elinizi kameranın ortasına getirin. (Simüle ediliyor)");
+                // Visual feedback instead of alert for better UX
+                calBtn.textContent = "CALIBRATING...";
+                setTimeout(() => { calBtn.textContent = "CALIBRATION OK"; }, 2000);
             });
         }
 
         if (logsBtn) {
             logsBtn.addEventListener('click', () => {
                 this.addLog("ACCESSING_RESTRICTED_DATA...");
-                const logs = [
-                    "SYNC_ERROR_DETECTED_IN_SECTOR_7",
-                    "NEURAL_LINK_STABILITY: 98.4%",
-                    "ANKARA_AI_NODE_ACTIVE",
-                    "AURA_PROTOCOL_V4_RUNNING"
-                ];
-                alert("Sistem Kayıtları:\n" + logs.join("\n"));
+                this.addLog("NEURAL_LINK_STABILITY: 98.4%");
+                this.addLog("AURA_PROTOCOL_V4_RUNNING");
             });
         }
     }

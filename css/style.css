@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap');
+
+:root {
+    --neon-cyan: #00f2ff;
+    --neon-orange: #ff8c00;
+    --neon-red: #ff0044;
+    --neon-green: #39ff14;
+    --bg-dark: #050505;
+    --panel-bg: rgba(10, 10, 20, 0.85);
+}
+
 body {
     margin: 0;
     overflow: hidden;
-    background-color: #050505;
-    /* Deep dark background */
-    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    font-family: 'Rajdhani', sans-serif;
     color: white;
 }
 
@@ -22,202 +32,149 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 10;
     pointer-events: none;
-    /* Let clicks pass through to canvas */
 }
 
-/* Ensure UI elements that need interaction have pointer-events: auto */
 .interactive {
     pointer-events: auto;
 }
 
-/* Fever Mode Visuals */
-.fever-active #canvas-container {
-    filter: saturate(1.5) contrast(1.1);
+/* === Fütüristik Options Paneli === */
+.options-panel {
+    background: linear-gradient(135deg, rgba(20, 20, 35, 0.95) 0%, rgba(10, 10, 20, 0.98) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 255, 0.05);
+    overflow: hidden;
+    position: relative;
 }
 
-@keyframes flash {
-    0% {
-        background-color: rgba(255, 0, 0, 0);
-    }
-
-    50% {
-        background-color: rgba(255, 0, 0, 0.1);
-    }
-
-    100% {
-        background-color: rgba(255, 0, 0, 0);
-    }
-}
-
-.fever-active #ui-layer {
-    animation: flash 1s infinite;
-}
-
-/* Omega Animations */
-@keyframes biosTyping {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.bios-line {
-    animation: biosTyping 0.1s forwards;
-}
-
-.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-#bios-boot p {
-    margin: 2px 0;
-    text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
-}
-
-/* Scrollbar & Typography Fixes */
-.custom-scrollbar::-webkit-scrollbar {
+.options-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 4px;
+    height: 100%;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+.panel-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(0, 255, 255, 0.2);
-    border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 255, 255, 0.5);
-}
-
-#narrative-text {
-    letter-spacing: 0.02em;
-    word-spacing: 0.05em;
-}
-
-/* Options Panel Button Styles */
-.control-btn,
-.diff-btn {
+/* === Modern Butonlar === */
+.control-btn, .diff-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-    pointer-events: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
 }
 
-.control-btn:hover,
-.diff-btn:hover {
+.control-btn:hover, .diff-btn:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(0, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
 }
 
 .control-btn.active {
-    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-    border-color: #f97316;
+    background: linear-gradient(to right, #e65100, #ff8f00);
+    border-color: var(--neon-orange);
     color: white;
-    box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
 }
 
 .diff-btn.active {
-    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-    border-color: #06b6d4;
+    background: linear-gradient(to right, #00acc1, #00e5ff);
+    border-color: var(--neon-cyan);
     color: white;
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
-}
-/* ===== PREMIUM GLASSMORPHISM & ANIMATIONS ===== */
-
-/* Enhanced Options Panel */
-.options-panel {
-    background: rgba(10, 10, 30, 0.4) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(0, 255, 255, 0.2) !important;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 40px rgba(0, 255, 255, 0.1) !important;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
 }
 
-/* Button Micro-Animations */
-.control-btn, .diff-btn {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+/* === Skor Tablosu (Scoreboard) === */
+.scoreboard-container {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 30px;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
 }
 
-.control-btn::before, .diff-btn::before {
+.scoreboard-container::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
 }
 
-.control-btn:hover::before, .diff-btn:hover::before {
-    width: 300px;
-    height: 300px;
+.score-text {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.control-btn:hover, .diff-btn:hover {
-    transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 0 20px currentColor;
+/* === Animasyonlar === */
+@keyframes neon-pulse {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+    50% { opacity: 0.8; filter: drop-shadow(0 0 15px var(--neon-cyan)); }
 }
 
-.control-btn.active {
-    animation: pulse-orange 2s infinite;
+.neon-glow-cyan {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
 }
 
-.diff-btn.active {
-    animation: pulse-cyan 2s infinite;
+.neon-glow-red {
+    color: var(--neon-red);
+    text-shadow: 0 0 10px var(--neon-red);
 }
 
-@keyframes pulse-orange {
-    0%, 100% { 
-        box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
-        border-color: rgba(249, 115, 22, 0.5);
-    }
-    50% { 
-        box-shadow: 0 0 25px rgba(249, 115, 22, 0.8);
-        border-color: rgba(249, 115, 22, 0.8);
-    }
+/* === Start Screen / Menu === */
+#start-screen {
+    background: radial-gradient(circle at center, #101025 0%, #050505 100%);
 }
 
-@keyframes pulse-cyan {
-    0%, 100% { 
-        box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
-        border-color: rgba(6, 182, 212, 0.5);
-    }
-    50% { 
-        box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
-        border-color: rgba(6, 182, 212, 0.8);
-    }
+.menu-title {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -2px;
 }
 
-/* Webcam Preview Glow */
-#webcam-preview-container {
-    animation: webcam-glow 3s infinite;
+.glitch-text {
+    position: relative;
+    display: inline-block;
 }
 
-@keyframes webcam-glow {
-    0%, 100% {
-        filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3));
-    }
-    50% {
-        filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.5));
-    }
+/* === Diğer UI Elemanları === */
+#status-panel {
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--neon-green);
+    backdrop-filter: blur(10px);
+}
+
+#webcam-preview {
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
 }

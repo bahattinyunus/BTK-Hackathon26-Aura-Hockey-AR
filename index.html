@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Hockey AR | Ankara AI Hackathon '26</title>
+    <title>Aura Hockey AR | Neo-Ankara '26</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,172 +29,136 @@
     <div id="canvas-container"></div>
 
     <!-- UI Layer -->
-    <div id="ui-layer" class="flex flex-col justify-between p-6">
-        <header class="text-white flex justify-between items-start">
-            <!-- Left Side: Options Panel -->
-            <div class="flex gap-6">
-                <!-- Options Panel -->
-                <div class="bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10 w-48">
-                    <h3 class="text-cyan-400 font-bold text-sm mb-3 uppercase tracking-wider">OPTIONS</h3>
-
+    <div id="ui-layer" class="flex flex-col justify-between p-8">
+        <header class="flex justify-between items-start">
+            <!-- Left Side: Fütüristik Options Panel -->
+            <div class="options-panel w-56 interactive">
+                <div class="panel-header uppercase tracking-widest">Options</div>
+                <div class="p-4 space-y-6">
                     <!-- Control Mode -->
-                    <div class="mb-4">
-                        <p class="text-white/60 text-xs mb-2 uppercase tracking-wide">CONTROL MODE</p>
-                        <div class="flex gap-2">
-                            <button id="control-hand"
-                                class="control-btn active px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">El</button>
-                            <button id="control-head"
-                                class="control-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Kafa</button>
-                            <button id="control-mouse"
-                                class="control-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Fare</button>
+                    <div>
+                        <p class="text-white/40 text-[9px] font-bold uppercase tracking-[0.2em] mb-3">Control Mode</p>
+                        <div class="flex flex-col gap-2">
+                            <button id="control-hand" class="control-btn active py-2 rounded">Hand</button>
+                            <button id="control-mouse" class="control-btn py-2 rounded">Mouse</button>
                         </div>
                     </div>
 
                     <!-- Difficulty -->
                     <div>
-                        <p class="text-white/60 text-xs mb-2 uppercase tracking-wide">ZORLUK</p>
+                        <p class="text-white/40 text-[9px] font-bold uppercase tracking-[0.2em] mb-3">Difficulty</p>
                         <div class="flex flex-col gap-2">
-                            <button id="diff-easy"
-                                class="diff-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Kolay</button>
-                            <button id="diff-medium"
-                                class="diff-btn active px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Orta</button>
-                            <button id="diff-hard"
-                                class="diff-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Zor</button>
+                            <button id="diff-easy" class="diff-btn py-2 rounded">Easy</button>
+                            <button id="diff-medium" class="diff-btn active py-2 rounded">Medium</button>
+                            <button id="diff-hard" class="diff-btn py-2 rounded">Hard</button>
                         </div>
-                    </div>
-
-                    <div class="mt-4 pt-3 border-t border-white/10 text-[9px] text-orange-400 font-mono">
-                        Fare ile kontrol aktif
                     </div>
                 </div>
             </div>
 
             <!-- Right Side: Score and Webcam -->
-            <div class="flex items-start gap-4">
-                <!-- Score Display -->
-                <div class="flex flex-col items-center gap-1">
-                    <div id="score-display"
-                        class="bg-black/40 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md text-3xl font-bold tracking-widest font-mono shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                        <span class="text-cyan-400">0</span>
-                        <span class="text-white mx-2">:</span>
-                        <span class="text-red-500">0</span>
+            <div class="flex flex-col items-end gap-6">
+                <!-- Scoreboard (Görseldeki gibi YOU vs AI) -->
+                <div class="flex flex-col items-center gap-2">
+                    <div class="scoreboard-container flex items-center gap-6">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">You</span>
+                            <span id="player-score" class="score-text text-white">0</span>
+                        </div>
+                        <div class="text-white/20 text-4xl font-black">-</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">AI</span>
+                            <span id="ai-score" class="score-text neon-glow-red">0</span>
+                        </div>
                     </div>
-                    <div id="high-score" class="text-[10px] font-mono text-cyan-500/70 uppercase tracking-tighter">
-                        BEST_SYNC: <span id="high-score-val">0</span>
+                    <div id="high-score" class="text-[10px] font-bold text-cyan-500/50 uppercase tracking-[0.3em]">
+                        Best Sync: <span id="high-score-val">0</span>
                     </div>
                 </div>
 
                 <!-- Webcam Preview -->
                 <div id="webcam-preview-container" class="relative">
                     <video id="webcam-preview"
-                        class="w-40 h-28 rounded-xl border-2 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] object-cover"
+                        class="w-48 h-32 rounded-lg object-cover"
                         autoplay playsinline muted>
                     </video>
-                    <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                    <div
-                        class="absolute bottom-2 left-2 text-[10px] font-mono text-white/60 bg-black/50 px-2 py-1 rounded backdrop-blur-sm">
-                        AI TRACKING
+                    <div class="absolute top-3 right-3 w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_red]"></div>
+                    <div class="absolute bottom-3 left-3 text-[9px] font-bold text-white bg-black/80 px-2 py-1 rounded border border-white/10 tracking-widest uppercase">
+                        Neural Tracking
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Status / Debug -->
-        <div id="status-panel" class="bg-black/50 backdrop-blur-md p-4 rounded-lg border border-white/10 w-fit">
-            <div class="flex items-center gap-3">
-                <div id="connection-dot"
-                    class="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
-                <span id="status-text" class="text-green-400 font-mono text-sm tracking-widest uppercase">Sistem
-                    Aktif</span>
+        <!-- Bottom Status Bar -->
+        <div class="flex justify-between items-end">
+            <div id="status-panel" class="p-4 rounded-r-lg border-r border-t border-b border-white/5 w-64">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
+                    <span class="text-green-400 font-bold text-[11px] tracking-widest uppercase">System Active</span>
+                </div>
+                <div class="flex gap-4 text-[9px] font-medium text-white/30 uppercase tracking-wider">
+                    <span>FPS: <span id="fps-counter" class="text-white">60</span></span>
+                    <span>AI: <span class="text-white">Stable</span></span>
+                    <span>Lat: <span class="text-white">12ms</span></span>
+                </div>
             </div>
-            <div class="mt-3 flex gap-4 text-[10px] font-mono text-gray-500">
-                <span>FPS: <span id="fps-counter" class="text-white">60</span></span>
-                <span>YAPAY ZEKA: <span id="ai-status" class="text-white">OK</span></span>
-                <span>BELLEK: <span class="text-white">STABIL</span></span>
-            </div>
-        </div>
 
-        <!-- Zenith: Aura OS Data Stream -->
-        <div id="status-log"
-            class="fixed bottom-6 right-6 w-64 h-32 overflow-hidden pointer-events-none font-mono text-[9px] text-cyan-500/50 flex flex-col justify-end">
-            <!-- Logs will flow here -->
-        </div>
-
-        <!-- Bottom Instruction Bar -->
-        <div class="text-center mb-4">
-            <div class="bg-black/70 backdrop-blur-md inline-block px-6 py-3 rounded-lg border border-white/10">
-                <p class="text-sm text-gray-300 font-mono">
-                    <span class="text-cyan-400 font-bold">İşaret parmağını</span> kaldırarak raketi kontrol et •
-                    <span class="text-orange-400 font-bold">Yumruk</span> yaparak özel yetenek kullan
+            <!-- Instruction -->
+            <div class="bg-white/5 backdrop-blur-md px-8 py-4 rounded-t-xl border-t border-l border-r border-white/10">
+                <p class="text-[11px] text-white/60 font-medium tracking-widest uppercase">
+                    Use <span class="text-cyan-400">Index Finger</span> to move • <span class="text-orange-400">Fist</span> for Aura Burst
                 </p>
+            </div>
+
+            <!-- Log Stream -->
+            <div id="status-log" class="w-64 h-24 overflow-hidden pointer-events-none text-[8px] text-cyan-500/30 flex flex-col justify-end items-end p-4 font-mono">
+                <!-- Logs flow here -->
             </div>
         </div>
     </div>
 
-    <!-- Aura OS: Omega Lobby -->
-    <div id="start-screen" class="absolute inset-0 z-50 flex items-center justify-center bg-[#050505]">
-        <!-- BIOS Startup -->
-        <div id="bios-boot"
-            class="absolute inset-0 p-10 font-mono text-green-500 text-xs opacity-0 pointer-events-none overflow-hidden">
-            <p>> AURA_OS v4.0.0-OMEGA INITIALIZING...</p>
-            <p>> KERNEL: NEO-ANKARA-CORE-v2.6</p>
-            <p>> CHECKING MEMORY... 128TB OK</p>
-            <p>> CONNECTING TO NEURAL-HACK... OK</p>
-            <p>> SYNCING TEMPORAL REVERB... [||||||||||] 100%</p>
-            <p>> WARNING: REALITY INSTABILITY DETECTED</p>
-            <p>> BOOTING ARENA_MODULE...</p>
-        </div>
+    <!-- Main Menu Screen -->
+    <div id="start-screen" class="absolute inset-0 z-50 flex items-center justify-center">
+        <div id="main-menu" class="text-center space-y-12 max-w-lg w-full px-6 opacity-0 transform translate-y-10 transition-all duration-1000">
+            <div class="space-y-2">
+                <h1 class="text-8xl font-black italic tracking-tighter text-white menu-title">
+                    Aura <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Hockey</span>
+                </h1>
+                <p class="text-cyan-500/50 font-bold tracking-[0.5em] uppercase text-xs">Neural Interface v4.0</p>
+            </div>
 
-        <!-- Glassmorphism Main Menu -->
-        <div id="main-menu"
-            class="relative z-10 w-full max-w-2xl p-12 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl opacity-0 transform translate-y-10 transition-all duration-1000">
-            <div class="absolute -top-10 -right-10 w-32 h-32 bg-cyan-500/20 blur-3xl rounded-full"></div>
-            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500/20 blur-3xl rounded-full"></div>
-
-            <h1 class="text-7xl font-black italic tracking-tighter text-white mb-2">
-                AURA <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200">HOCKEY</span>
-            </h1>
-            <div class="w-20 h-1 bg-cyan-500 mb-8"></div>
-
-            <div class="space-y-4">
+            <div class="space-y-4 interactive">
                 <button id="start-btn"
-                    class="w-full py-5 bg-cyan-500 hover:bg-cyan-400 text-black font-black text-2xl rounded-xl transition-all shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] uppercase tracking-tighter">
-                    Arenaya Bağlan
+                    class="w-full py-6 bg-cyan-500 hover:bg-cyan-400 text-black font-black text-2xl rounded-sm transition-all shadow-[0_0_40px_rgba(6,182,212,0.3)] uppercase tracking-tighter">
+                    Connect to Arena
                 </button>
                 <div class="grid grid-cols-2 gap-4">
-                    <button id="calibration-btn"
-                        class="py-3 px-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 rounded-lg font-mono text-xs uppercase tracking-widest transition-all">
-                        Kalibrasyon
+                    <button id="calibration-btn" class="py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/40 text-[10px] font-bold uppercase tracking-widest transition-all">
+                        Calibration
                     </button>
-                    <button id="data-logs-btn"
-                        class="py-3 px-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 rounded-lg font-mono text-xs uppercase tracking-widest transition-all">
-                        Veri Kayıtları
+                    <button id="data-logs-btn" class="py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/40 text-[10px] font-bold uppercase tracking-widest transition-all">
+                        Data Logs
                     </button>
                 </div>
             </div>
 
-            <div
-                class="mt-12 pt-8 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-white/30 tracking-widest uppercase">
-                <span>© 2026 NEO-ANKARA INDUSTRIES</span>
-                <span class="text-cyan-500/50">STABLE CONNECTION [LINK_01]</span>
+            <div class="pt-12 border-t border-white/5 flex justify-between text-[9px] font-bold text-white/20 tracking-[0.2em] uppercase">
+                <span>© 2026 Neo-Ankara Industries</span>
+                <span>Neural Link: Stable</span>
             </div>
         </div>
     </div>
 
-    <!-- Hidden Video Element for MediaPipe (kept for compatibility) -->
+    <!-- Hidden Video for MediaPipe -->
     <video id="webcam" class="hidden" autoplay playsinline></video>
 
-    <!-- CDN Scripts -->
+    <!-- Scripts -->
     <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-
-    <!-- MediaPipe Dependencies (Loaded globally, wrapped in Vision module) -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
 
-    <!-- Main Logic -->
     <script type="module" src="js/ui-controls.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>

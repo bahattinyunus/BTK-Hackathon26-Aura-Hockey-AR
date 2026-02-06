@@ -31,15 +31,13 @@ Object.keys(controlButtons).forEach(mode => {
             btn.classList.add('active');
             currentControl = mode;
 
-            // Update status text
-            const statusDiv = document.querySelector('.text-orange-400');
-            if (statusDiv) {
+            // Update status text (Optional: can be added to logs or status panel)
+            if (window.game) {
                 const modeText = {
-                    hand: 'El ile kontrol aktif',
-                    head: 'Kafa ile kontrol aktif',
-                    mouse: 'Fare ile kontrol aktif'
+                    hand: 'Neural Tracking Active',
+                    mouse: 'Mouse Control Active'
                 };
-                statusDiv.textContent = modeText[mode];
+                window.game.addLog(`CONTROL_MODE: ${modeText[mode] || mode.toUpperCase()}`);
             }
 
             console.log(`Control mode changed to: ${mode}`);
