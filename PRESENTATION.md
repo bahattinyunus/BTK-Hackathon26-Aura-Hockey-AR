@@ -1,338 +1,338 @@
 # AURA HOCKEY AR
-## Executive Presentation
+## Yönetici Sunumu
 
 **Ankara AI Hackathon 2026**
 
 ---
 
-## THE VISION
+## VİZYON
 
-**Democratizing gaming through AI-powered gesture control**
+**Yapay zeka destekli jestür kontrolü ile oyun dünyasını demokratikleştirmek**
 
-We're eliminating hardware barriers and making premium gaming accessible to everyone—no controllers, no installation, just your hands and a browser.
-
----
-
-## THE PROBLEM
-
-**Gaming accessibility is broken**
-
-- **$200** average cost for gaming controllers
-- **65%** of potential players excluded by hardware requirements  
-- **Zero** accessible options for motor-impaired users
-- **Fragmented** experience across platforms
-
-**Market Opportunity**: $4.5B browser gaming industry ready for disruption
+Donanım engellerini ortadan kaldırıyor, premium oyun deneyimini herkese açıyoruz—kontrolcü yok, kurulum yok, sadece elleriniz ve tarayıcınız.
 
 ---
 
-## THE SOLUTION
+## PROBLEM
 
-**AI-powered, zero-install gaming platform**
+**Oyun erişilebilirliği kırılmış durumda**
 
-### Core Innovation
-- **MediaPipe Hands**: Google's proven AI for 60 FPS hand tracking
-- **Browser-native**: Works everywhere, installs nowhere
-- **Premium UX**: AAA-quality graphics in a web browser
-- **Adaptive AI**: Learns and scales with player skill
+- **$200** ortalama oyun kontrolcüsü maliyeti
+- **%65** potansiyel oyuncu donanım gereksinimleri nedeniyle dışlanıyor
+- **Sıfır** motor engelli kullanıcılar için erişilebilir seçenek
+- **Parçalanmış** platformlar arası deneyim
 
-### Key Metrics
-- **60 FPS** sustained performance
-- **<20ms** input latency
-- **3 seconds** to first play
-- **Zero** installation friction
+**Pazar Fırsatı**: $4.5 milyar tarayıcı oyun endüstrisi yıkıma hazır
 
 ---
 
-## BUSINESS MODEL
+## ÇÖZÜM
 
-### Three Revenue Streams
+**AI-destekli, kurulum gerektirmeyen oyun platformu**
 
-**Year 1-2: Freemium B2C**
-- Free tier with ads
-- Premium: $4.99/month
-- Target: 10K users → 500 premium → **$30K ARR**
+### Temel İnovasyon
+- **MediaPipe Hands**: Google'ın kanıtlanmış AI'ı ile 60 FPS el takibi
+- **Tarayıcı-native**: Her yerde çalışır, hiçbir yere kurulmaz
+- **Premium UX**: Web tarayıcısında AAA kalitesi grafik
+- **Adaptif AI**: Oyuncu becerisiyle öğrenir ve ölçeklenir
 
-**Year 2-3: B2B Education**
-- School licenses: $500/year
-- Analytics dashboard included
-- Target: 20 schools → **$10K ARR**
-
-**Year 3+: Platform/SDK**
-- Developer licenses: $99/month
-- White-label: $5K one-time
-- Target: 50 developers → **$60K ARR**
+### Anahtar Metrikler
+- **60 FPS** sürekli performans
+- **<20ms** girdi gecikmesi
+- **3 saniye** ilk oyuna kadar
+- **Sıfır** kurulum sürtünmesi
 
 ---
 
-## MARKET POSITION
+## İŞ MODELİ
 
-### Competitive Advantages
+### Üç Gelir Akışı
 
-**vs Traditional Gaming**
-- ✓ Zero hardware cost
-- ✓ Instant access
+**Yıl 1-2: Freemium B2C**
+- Reklamlı ücretsiz tier
+- Premium: ₺149/ay
+- Hedef: 10K kullanıcı → 500 premium → **₺900K YGG**
+
+**Yıl 2-3: B2B Eğitim**
+- Okul lisansları: ₺15K/yıl
+- Analitik dashboard dahil
+- Hedef: 20 okul → **₺300K YGG**
+
+**Yıl 3+: Platform/SDK**
+- Geliştirici lisansları: ₺3K/ay
+- White-label: ₺150K tek seferlik
+- Hedef: 50 geliştirici → **₺1.8M YGG**
+
+---
+
+## PAZAR POZİSYONU
+
+### Rekabetçi Avantajlar
+
+**vs Geleneksel Oyunlar**
+- ✓ Sıfır donanım maliyeti
+- ✓ Anında erişim
 - ✓ Cross-platform native
 
 **vs VR/AR**
-- ✓ No headset required ($0 vs $500)
-- ✓ Accessible to everyone
-- ✓ Works on existing devices
+- ✓ Headset gerektirmez (₺0 vs ₺15K)
+- ✓ Herkes için erişilebilir
+- ✓ Mevcut cihazlarda çalışır
 
-**vs Browser Games**
-- ✓ AI-powered controls
-- ✓ Premium graphics quality
-- ✓ Real physics engine
+**vs Tarayıcı Oyunları**
+- ✓ AI-destekli kontroller
+- ✓ Premium grafik kalitesi
+- ✓ Gerçek fizik motoru
 
-**First-mover advantage** in AI gesture control gaming
-
----
-
-## TRACTION
-
-### Built in 30 Hours
-
-**Technical Achievement**
-- 1,858 lines of production code
-- 5 modular systems
-- 60 FPS performance
-- Open source (MIT)
-
-**Validation**
-- Hackathon demo-ready
-- Full feature parity with concept
-- Production-quality UX
-- Scalable architecture
+**İlk hamle avantajı** AI jestür kontrol oyunlarında
 
 ---
 
-## FINANCIAL PROJECTIONS
+## ÇEKİŞ
 
-| Year | Users | Revenue | Net Profit | Margin |
-|------|-------|---------|------------|--------|
-| 2026 | 10K | $30K | $21K | 70% |
-| 2027 | 50K | $309K | $160K | 52% |
-| 2028 | 200K | $1.9M | $1.1M | 59% |
-| 2029 | 500K | $4.5M | $2.7M | 60% |
-| 2030 | 1M | $9M | $5.4M | 60% |
+### 30 Saatte İnşa Edildi
 
-**5-Year Target**: $9M revenue, $5.4M profit
+**Teknik Başarı**
+- 1,858 satır production kodu
+- 5 modüler sistem
+- 60 FPS performans
+- Açık kaynak (MIT)
+
+**Doğrulama**
+- Hackathon demo-hazır
+- Konseptle tam özellik paritesi
+- Production-kalite UX
+- Ölçeklenebilir mimari
 
 ---
 
-## ROADMAP
+## FİNANSAL PROJEKSİYONLAR
 
-### Q1 2026 (Now)
-✓ MVP launched  
-✓ Open source release  
-✓ Hackathon validation
+| Yıl | Kullanıcı | Gelir | Net Kar | Marj |
+|-----|-----------|-------|---------|------|
+| 2026 | 10K | ₺900K | ₺630K | 70% |
+| 2027 | 50K | ₺9.3M | ₺4.8M | 52% |
+| 2028 | 200K | ₺57M | ₺33M | 59% |
+| 2029 | 500K | ₺135M | ₺81M | 60% |
+| 2030 | 1M | ₺270M | ₺162M | 60% |
+
+**5 Yıllık Hedef**: ₺270M gelir, ₺162M kar
+
+---
+
+## YOL HARİTASI
+
+### Q1 2026 (Şimdi)
+✓ MVP lansmanı  
+✓ Açık kaynak yayını  
+✓ Hackathon doğrulaması
 
 ### Q2-Q3 2026
-→ Multiplayer mode  
-→ Premium tier launch  
-→ First 1K users
+→ Multiplayer modu  
+→ Premium tier lansmanı  
+→ İlk 1K kullanıcı
 
 ### Q4 2026
-→ B2B pilot program  
-→ 10K users  
-→ $7.5K MRR
+→ B2B pilot programı  
+→ 10K kullanıcı  
+→ ₺225K AYG
 
 ### 2027-2028
-→ Platform expansion  
-→ SDK launch  
-→ International markets
+→ Platform genişlemesi  
+→ SDK lansmanı  
+→ Uluslararası pazarlar
 
 ---
 
-## IMPACT
+## ETKİ
 
-### Social Value
+### Sosyal Değer
 
-**Accessibility**
-- Motor-impaired users gain access
-- Low-income players included
-- Geographic barriers removed
+**Erişilebilirlik**
+- Motor engelli kullanıcılar erişim kazanır
+- Düşük gelirli oyuncular dahil edilir
+- Coğrafi engeller kaldırılır
 
-**Education**
-- STEM learning tool
-- AI/ML concepts demonstration
-- Coding education platform
+**Eğitim**
+- STEM öğrenme aracı
+- AI/ML konsept gösterimi
+- Kodlama eğitim platformu
 
-**Healthcare**
-- Rehabilitation exercises
-- Motor skill development
-- Cognitive therapy support
+**Sağlık**
+- Rehabilitasyon egzersizleri
+- Motor beceri geliştirme
+- Bilişsel terapi desteği
 
-**Market**: 2.5M potential users in Turkey alone
+**Pazar**: Sadece Türkiye'de 2.5M potansiyel kullanıcı
 
 ---
 
-## THE TEAM
+## TAKIM
 
 **Bahattin Yunus Çetin**  
 *IT Architect*
 
-- 30+ open source projects
-- AI/ML integration specialist
-- Real-time systems expert
-- Full-stack architect
+- 30+ açık kaynak proje
+- AI/ML entegrasyon uzmanı
+- Real-time sistemler expert
+- Full-stack mimar
 
-**Technical Stack Mastery**
+**Teknik Stack Ustalığı**
 - Frontend: Three.js, WebGL, Modern JS
 - AI: MediaPipe, TensorFlow.js
-- Systems: Real-time physics, game engines
-- Cloud: Scalable architecture, DevOps
+- Sistemler: Real-time fizik, oyun motorları
+- Cloud: Ölçeklenebilir mimari, DevOps
 
 ---
 
-## THE ASK
+## TALEBİMİZ
 
-### Immediate Next Steps
+### Acil Sonraki Adımlar
 
-**Validation** (Q2 2026)
-- Beta testing with 1K users
-- B2B pilot with 5 schools
-- Performance optimization
+**Doğrulama** (Q2 2026)
+- 1K kullanıcı ile beta testi
+- 5 okul ile B2B pilot
+- Performans optimizasyonu
 
-**Growth** (Q3 2026)
-- Premium tier launch
-- Marketing campaign
-- Community building
+**Büyüme** (Q3 2026)
+- Premium tier lansmanı
+- Pazarlama kampanyası
+- Topluluk oluşturma
 
-**Scale** (Q4 2026)
-- Platform expansion
-- SDK development
-- International launch
-
----
-
-## WHY NOW
-
-**Perfect Timing**
-
-1. **AI Maturity**: MediaPipe production-ready
-2. **Browser Capabilities**: WebGL 2.0, Web Audio API stable
-3. **Market Demand**: Post-pandemic digital acceleration
-4. **Accessibility Focus**: Global push for inclusive tech
-5. **Open Source**: Community-driven development model
-
-**Window of Opportunity**: 12-18 months before competitors catch up
+**Ölçekleme** (Q4 2026)
+- Platform genişlemesi
+- SDK geliştirme
+- Uluslararası lansman
 
 ---
 
-## SUCCESS METRICS
+## NEDEN ŞİMDİ
 
-### Year 1 KPIs
+**Mükemmel Zamanlama**
 
-**User Acquisition**
-- 10,000 total users
-- 500 premium subscribers
-- 40% D7 retention
+1. **AI Olgunluğu**: MediaPipe production-ready
+2. **Tarayıcı Yetenekleri**: WebGL 2.0, Web Audio API stabil
+3. **Pazar Talebi**: Pandemi sonrası dijital hızlanma
+4. **Erişilebilirlik Odağı**: Kapsayıcı teknoloji için global itme
+5. **Açık Kaynak**: Topluluk-odaklı geliştirme modeli
 
-**Revenue**
-- $30K ARR
-- 70% profit margin
-- <$30 CAC
-
-**Product**
-- 60 FPS sustained
-- <20ms latency
-- 4.5+ app store rating
-
-**Community**
-- 500 GitHub stars
-- 50 contributors
-- 10 forks/derivatives
+**Fırsat Penceresi**: Rakipler yetişmeden önce 12-18 ay
 
 ---
 
-## COMPETITIVE MOAT
+## BAŞARI METRİKLERİ
 
-### Defensibility
+### Yıl 1 KPI'ları
 
-**Technology**
-- Proprietary physics engine
-- Optimized AI pipeline
-- Premium UX/UI system
+**Kullanıcı Edinimi**
+- 10,000 toplam kullanıcı
+- 500 premium abone
+- %40 D7 retention
 
-**Network Effects**
-- Platform ecosystem
-- Developer community
-- User-generated content
+**Gelir**
+- ₺900K YGG
+- %70 kar marjı
+- <₺900 CAC
 
-**Brand**
-- First-mover in category
-- Open source credibility
-- Educational partnerships
+**Ürün**
+- 60 FPS sürekli
+- <20ms gecikme
+- 4.5+ uygulama mağazası puanı
 
-**Data**
-- User behavior analytics
-- AI training data
-- Performance benchmarks
-
----
-
-## EXIT STRATEGY
-
-### Potential Paths
-
-**Acquisition** (3-5 years)
-- Gaming companies (Unity, Epic)
-- Tech giants (Google, Microsoft)
-- EdTech platforms
-
-**IPO** (7-10 years)
-- Platform maturity
-- Proven revenue model
-- International presence
-
-**Sustainable Business**
-- Profitable from Year 1
-- Organic growth
-- Long-term value creation
-
-**Estimated Valuation** (Year 5): $50-100M
+**Topluluk**
+- 500 GitHub yıldızı
+- 50 katkıda bulunan
+- 10 fork/türev
 
 ---
 
-## CLOSING
+## REKABETÇİ HENDEK
 
-### The Opportunity
+### Savunulabilirlik
 
-**Aura Hockey AR isn't just a game—it's the future of accessible, AI-powered interactive experiences.**
+**Teknoloji**
+- Tescilli fizik motoru
+- Optimize AI pipeline
+- Premium UX/UI sistemi
 
-We're building the platform that will:
-- Democratize gaming for millions
-- Enable new forms of human-computer interaction
-- Create a sustainable, profitable business
-- Generate meaningful social impact
+**Ağ Etkileri**
+- Platform ekosistemi
+- Geliştirici topluluğu
+- Kullanıcı-üretimli içerik
 
-**Join us in redefining how the world plays.**
+**Marka**
+- Kategoride ilk hamle
+- Açık kaynak güvenilirliği
+- Eğitim ortaklıkları
+
+**Veri**
+- Kullanıcı davranış analitiği
+- AI eğitim verisi
+- Performans benchmark'ları
 
 ---
 
-## CONTACT
+## ÇIKIŞ STRATEJİSİ
+
+### Potansiyel Yollar
+
+**Satın Alma** (3-5 yıl)
+- Oyun şirketleri (Unity, Epic)
+- Tech devleri (Google, Microsoft)
+- EdTech platformları
+
+**Halka Arz** (7-10 yıl)
+- Platform olgunluğu
+- Kanıtlanmış gelir modeli
+- Uluslararası varlık
+
+**Sürdürülebilir İş**
+- Yıl 1'den karlı
+- Organik büyüme
+- Uzun vadeli değer yaratma
+
+**Tahmini Değerleme** (Yıl 5): ₺1.5-3 milyar
+
+---
+
+## KAPANIŞ
+
+### Fırsat
+
+**Aura Hockey AR sadece bir oyun değil—erişilebilir, AI-destekli interaktif deneyimlerin geleceği.**
+
+Şunları yapacak platformu inşa ediyoruz:
+- Milyonlar için oyunu demokratikleştirmek
+- Yeni insan-bilgisayar etkileşim biçimlerini mümkün kılmak
+- Sürdürülebilir, karlı bir iş yaratmak
+- Anlamlı sosyal etki üretmek
+
+**Dünyanın nasıl oynadığını yeniden tanımlamada bize katılın.**
+
+---
+
+## İLETİŞİM
 
 **Bahattin Yunus Çetin**  
 IT Architect
 
 **GitHub**: github.com/bahattinyunus  
 **LinkedIn**: linkedin.com/in/bahattinyunus  
-**Project**: github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR
+**Proje**: github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR
 
-**Demo**: Available now  
-**Investment**: Open to discussion  
-**Partnership**: Actively seeking
+**Demo**: Şimdi mevcut  
+**Yatırım**: Görüşmeye açık  
+**Ortaklık**: Aktif olarak arıyoruz
 
 ---
 
 **Ankara AI Hackathon 2026**
 
-*"The best code isn't the longest—it's the most impactful."*
+*"En iyi kod en uzun olan değil—en etkili olandır."*
 
 ---
 
-**Document Version**: Executive Summary v1.0  
-**Date**: February 6, 2026  
-**Pages**: 15  
-**Classification**: Public
+**Doküman Versiyonu**: Yönetici Özeti v1.0  
+**Tarih**: 6 Şubat 2026  
+**Sayfa**: 15  
+**Sınıflandırma**: Açık
