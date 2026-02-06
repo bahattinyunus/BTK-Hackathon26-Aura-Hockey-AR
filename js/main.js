@@ -109,7 +109,7 @@ class Game {
 
         // Scene
         this.scene = new THREE.Scene();
-        // this.scene.background = new THREE.Color(0x050505); // Let CSS handle background for now or set here
+        this.scene.background = new THREE.Color(0x0a0a15); // Dark navy background
         this.scene.fog = new THREE.FogExp2(0x000000, 0.035);
 
         // Camera
@@ -141,7 +141,7 @@ class Game {
         // Post-Processing (Bloom - Glow Effect)
         const renderScene = new RenderPass(this.scene, this.camera);
 
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.6, 0.3, 0.9);
         bloomPass.threshold = Config.Graphics.bloomThreshold;
         bloomPass.strength = Config.Graphics.bloomStrength;
         bloomPass.radius = Config.Graphics.bloomRadius;
