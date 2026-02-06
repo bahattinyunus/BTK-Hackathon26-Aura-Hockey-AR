@@ -131,11 +131,24 @@ graph TB
 | **Deployment** | Static Hosting | Ucanble Hub, Vercel, GitHub Pages |
 
 ### Performans Metrikleri
-- ⚡ **60 FPS** sabit kare hızı (adaptive quality)
-- 🚀 **<3 saniye** ilk yükleme süresi
-- 💾 **<15 MB** toplam bundle boyutu
-- 📊 **<16ms** AI inference latency
-- 🎯 **%98.5** gesture recognition accuracy
+
+**Geliştirme:**
+- ⏱️ **30 saat** hackathon sprint (5-6 Şubat 2026)
+- 💻 **1,858 satır** JavaScript kodu (5 modül)
+- 📦 **66 KB** kod boyutu (minified öncesi)
+- 🎨 Custom GLSL shaders, procedural audio engine
+
+**Runtime (Test: Chrome 120, Windows 11):**
+- 🚀 **FPS**: 58-62 (ortalama 60)
+- ⚡ **AI Inference**: 12-18ms (MediaPipe)
+- 💾 **Bundle**: ~15MB (CDN dependencies dahil)
+- ⏳ **Load Time**: ~3 saniye (first load)
+
+**Tarayıcı Uyumluluğu:**
+- ✅ Chrome 120+ (tam destek)
+- ✅ Edge 120+ (tam destek)
+- ⚠️ Firefox 115+ (kısmi, ses sorunları)
+- ❌ Safari (MediaPipe uyumluluk sorunu)
 
 ---
 
@@ -176,24 +189,22 @@ npm run build
 
 ### Gelir Modelleri
 
-#### 1. **Freemium Model** (B2C)
-- 🆓 **Ücretsiz Tier**: Temel oyun, 3 bölüm, reklam destekli
-- 💎 **Premium ($4.99/ay)**: Sınırsız bölüm, özel temalar, reklamsız
-- 🎨 **Cosmetic DLC**: Özel raket tasarımları, arena temaları ($0.99-$2.99)
+#### 🎯 Primary: Freemium B2C (80% Focus)
+- 🆓 **Free Tier**: 3 bölüm, reklam destekli
+- 💎 **Premium**: $4.99/ay, sınırsız içerik, reklamsız
+- **Hedef**: 50K kullanıcı (Yıl 1), %5 conversion → $12.5K MRR
 
-#### 2. **B2B Lisanslama**
-- 🏫 **Eğitim Kurumları**: Yıllık lisans ($499/kurum)
+#### 🏫 Secondary: B2B Eğitim (15% Focus)
+- **Eğitim Kurumları**: $499/yıl
   - STEM eğitimi için AI/AR öğretim aracı
-  - Öğrenci performans analitikleri
-- 🏥 **Sağlık Sektörü**: Rehabilitasyon paketi ($999/klinik)
-  - El-göz koordinasyonu egzersizleri
-  - İlerleme raporlama sistemi
-- 🎮 **Oyun Kafeleri**: Ticari kullanım lisansı ($299/ay)
+  - Öğrenci engagement ve pratik uygulama
+- **Hedef**: 10 kurum (Yıl 1) → $5K ARR
 
-#### 3. **Platform-as-a-Service** (B2B2C)
-- 🛠️ **Gesture Control SDK**: Diğer geliştiriciler için API ($99/ay)
-- 📊 **Analytics Dashboard**: Kullanıcı davranış analizi ($49/ay)
-- 🎯 **White-Label Çözümü**: Özelleştirilebilir platform ($2,999 one-time)
+#### 🚀 Future: Platform & SDK (5% Focus)
+- Gesture Control SDK ($99/ay)
+- White-label çözümü
+- Sağlık sektörü (rehabilitasyon)
+- **Hedef**: Yıl 2-3'te aktive
 
 ### Pazar Analizi
 
@@ -212,16 +223,18 @@ npm run build
 - **Yıl 2**: 250,000 kullanıcı → $780K ARR
 - **Yıl 3**: 1M kullanıcı → $3.2M ARR
 
-### Rekabet Avantajları
+### Rekabet Analizi
 
-| Özellik | Aura Hockey AR | Geleneksel Oyunlar | Diğer AR Oyunlar |
-|---------|----------------|---------------------|------------------|
-| **Donanım Gereksinimi** | ✅ Sadece webcam | ❌ Gamepad/touchscreen | ⚠️ AR gözlük/mobil |
-| **Kurulum** | ✅ Zero-install (browser) | ❌ Download/install | ⚠️ App store |
-| **AI Entegrasyonu** | ✅ MediaPipe native | ❌ Yok | ⚠️ Sınırlı |
-| **Maliyet** | ✅ Freemium ($0-$5) | ⚠️ $20-$60 | ⚠️ $10-$30 |
-| **Erişilebilirlik** | ✅ %100 | ⚠️ %60 | ⚠️ %40 |
-| **Platform** | ✅ Cross-platform | ❌ Platform-specific | ⚠️ Mobile-only |
+| Özellik | Aura Hockey AR | Leap Motion | Google ARCore | Meta Quest |
+|---------|----------------|-------------|---------------|------------|
+| **Maliyet** | $0-$5/ay | $99 (donanım) | $0 | $500 (headset) |
+| **Donanım** | Webcam | Özel sensor | Smartphone | VR headset |
+| **Platform** | Browser (any OS) | Desktop only | Mobile only | VR only |
+| **Kurulum** | Zero-install | Driver install | App download | Setup required |
+| **AI Hand Tracking** | ✅ MediaPipe | ✅ Proprietary | ✅ ARCore | ✅ Quest |
+| **Latency** | ~15ms | ~10ms | ~20ms | ~15ms |
+| **Erişilebilirlik** | Yüksek | Orta | Orta | Düşük |
+| **Use Case** | Casual gaming | Pro development | Mobile AR | VR gaming |
 
 ### Büyüme Stratejisi
 
@@ -251,7 +264,7 @@ npm run build
 1. **🌐 Browser-Native AI Hand Tracking**: İndirme gerektirmeyen, tam özellikli AI oyun
 2. **🎵 Procedural Music Engine**: Oyun durumuna göre gerçek zamanlı müzik bestesi
 3. **💎 Dynamic Reflections**: Tarayıcı tabanlı oyunlarda nadir görülen real-time cube mapping
-4. **♿ Accessibility-First Design**: Motor engelli kullanıcılar için optimize edilmiş kontroller
+4. **♿ Accessibility Vision**: Fiziksel kontrol gerektirmeyen, gesture-based oyun (WCAG compliance roadmap'te)
 
 ### Teknik İnovasyon
 ```javascript
@@ -331,8 +344,10 @@ gantt
 
 ### 📸 Ekran Görüntüleri
 
-![Aura Hockey AR Gameplay](demo.png)
+![Aura Hockey AR Gameplay](assets/screenshots/demo.png)
 *AI-powered gesture control ile sıfır dokunuşlu oyun deneyimi*
+
+> **📹 Demo Video**: Yakında YouTube'da yayınlanacak (1 dk gameplay showcase)
 
 ---
 
