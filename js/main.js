@@ -112,9 +112,9 @@ class Game {
         this.scene.background = new THREE.Color(0x0a0a15); // Dark navy background
         this.scene.fog = new THREE.FogExp2(0x000000, 0.035);
 
-        // Camera
+        // Camera - Top-down tilted view
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-        this.camera.position.set(0, 8, 12);
+        this.camera.position.set(0, 18, 12); // Higher Y for top-down view
         this.camera.lookAt(0, 0, 0);
 
         // Renderer
