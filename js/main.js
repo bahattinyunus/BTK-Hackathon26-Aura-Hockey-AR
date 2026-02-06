@@ -36,6 +36,7 @@ class Game {
         // UI Refs
         this.fpsElem = null;
         this.scoreElem = null;
+        this.highScore = parseInt(localStorage.getItem('aura_high_score')) || 0;
         this.framecount = 0;
         this.lastUpdateTime = 0;
 
@@ -93,6 +94,8 @@ class Game {
 
         // 5. Apex Telemetry
         this.initTelemetry();
+        this.initUIHandlers();
+        this.updateHighScoreUI();
 
         // Global Reflections
         this.setupGlobalEnvMap();
@@ -252,7 +255,47 @@ class Game {
                 <span class="text-red-500">${ai}</span>
             `;
             this.triggerGlitch();
+
+            // Update High Score if player leads
+            if (player > this.highScore) {
+                this.highScore = player;
+                localStorage.setItem('aura_high_score', this.highScore);
+                this.updateHighScoreUI();
+            }
+
             this.checkChapterProgress(player);
+        }
+    }
+
+    updateHighScoreUI() {
+        const highScoreVal = document.getElementById('high-score-val');
+        if (highScoreVal) {
+            highScoreVal.textContent = this.highScore;
+        }
+    }
+
+    initUIHandlers() {
+        const calBtn = document.getElementById('calibration-btn');
+        const logsBtn = document.getElementById('data-logs-btn');
+
+        if (calBtn) {
+            calBtn.addEventListener('click', () => {
+                this.addLog("INITIATING_CALIBRATION_SEQUENCE...");
+                alert("Kalibrasyon Modu: Lütfen elinizi kameranın ortasına getirin. (Simüle ediliyor)");
+            });
+        }
+
+        if (logsBtn) {
+            logsBtn.addEventListener('click', () => {
+                this.addLog("ACCESSING_RESTRICTED_DATA...");
+                const logs = [
+                    "SYNC_ERROR_DETECTED_IN_SECTOR_7",
+                    "NEURAL_LINK_STABILITY: 98.4%",
+                    "ANKARA_AI_NODE_ACTIVE",
+                    "AURA_PROTOCOL_V4_RUNNING"
+                ];
+                alert("Sistem Kayıtları:\n" + logs.join("\n"));
+            });
         }
     }
 
