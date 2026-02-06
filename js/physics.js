@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Config } from './config.js';
 import { Effects } from './effects.js';
+import { PuckTrail, createCollisionParticles } from './trail-effects.js';
 
 export class Physics {
     constructor() {
@@ -8,6 +9,7 @@ export class Physics {
         this.scene = null;
         this.sound = null;
         this.effects = null;
+        this.puckTrail = null; // Trail effect
 
         // Oyun Nesneleri
         this.paddle = null;
@@ -67,6 +69,7 @@ export class Physics {
         this.scene = scene;
         this.sound = sound;
         this.effects = new Effects(scene);
+        this.puckTrail = new PuckTrail(scene); // Initialize trail
 
         this.createTable();
         this.createPuck();
@@ -281,6 +284,11 @@ export class Physics {
 
         // 4. Efektler
         this.effects.update(scaledDelta, this.puck.position);
+
+        // 5. Trail Update
+        if (this.puckTrail && this.puckVelocity) {
+            this.puckTrail.update(this.puck.position, this.puckVelocity);
+        }
     }
 
     updateAI(delta) {
@@ -382,6 +390,7 @@ export class Physics {
             this.puck.position.x = Math.sign(this.puck.position.x) * limitX;
             this.sound.playEdgeSound(this.puckVelocity.length());
             this.effects.createExplosion(this.puck.position, 0x00FFFF);
+            createCollisionParticles(this.scene, this.puck.position, 0x00FFFF);
         }
 
         // --- 3. Gol Kontrolü (Z) ---
@@ -468,6 +477,7 @@ export class Physics {
 
             this.sound.playCollisionSound(this.puckVelocity.length());
             this.effects.createExplosion(this.puck.position, paddle === this.paddle ? Config.Paddle.colorPlayer : Config.Paddle.colorAI);
+            createCollisionParticles(this.scene, this.puck.position, paddle === this.paddle ? Config.Paddle.colorPlayer : Config.Paddle.colorAI);
 
             // Zenith: High Speed Chromatic Impact
             if (window.game && relativeVelocity.length() > 30) {

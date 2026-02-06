@@ -135,3 +135,89 @@ body {
     color: white;
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
 }
+/* ===== PREMIUM GLASSMORPHISM & ANIMATIONS ===== */
+
+/* Enhanced Options Panel */
+.options-panel {
+    background: rgba(10, 10, 30, 0.4) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(0, 255, 255, 0.2) !important;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 40px rgba(0, 255, 255, 0.1) !important;
+}
+
+/* Button Micro-Animations */
+.control-btn, .diff-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.control-btn::before, .diff-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.control-btn:hover::before, .diff-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.control-btn:hover, .diff-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 20px currentColor;
+}
+
+.control-btn.active {
+    animation: pulse-orange 2s infinite;
+}
+
+.diff-btn.active {
+    animation: pulse-cyan 2s infinite;
+}
+
+@keyframes pulse-orange {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+        border-color: rgba(249, 115, 22, 0.5);
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(249, 115, 22, 0.8);
+        border-color: rgba(249, 115, 22, 0.8);
+    }
+}
+
+@keyframes pulse-cyan {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+        border-color: rgba(6, 182, 212, 0.5);
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+        border-color: rgba(6, 182, 212, 0.8);
+    }
+}
+
+/* Webcam Preview Glow */
+#webcam-preview-container {
+    animation: webcam-glow 3s infinite;
+}
+
+@keyframes webcam-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.5));
+    }
+}
