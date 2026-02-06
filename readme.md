@@ -359,7 +359,7 @@ gantt
 - **Rol**: Full-Stack Developer & AI Engineer
 - **Uzmanlık**: WebGL, Three.js, MediaPipe, Game Development
 - **GitHub**: [@bahattinyunus](https://github.com/bahattinyunus)
-- **LinkedIn**: [Bahattin Yunus Türkmen](https://linkedin.com/in/bahattinyunus)
+- **LinkedIn**: [Bahattin Yunus Çetin](https://www.linkedin.com/in/yunuscetin/)
 
 ### Hackathon Ekibi
 - **Geliştirme**: 30 saat sprint
@@ -379,8 +379,8 @@ gantt
 Yapay zeka destekli otonom sistemler ve siber güvenlik alanlarında uzmanlaşmış yazılım mimarı. Aura Hockey AR, AI-powered web teknolojileri, gerçek zamanlı fizik simülasyonu ve kullanıcı deneyimi tasarımı konularındaki yetkinliğini sergileyen kapsamlı bir portföy çalışmasıdır.
 
 **Bağlantılar**:
-- � **LinkedIn**: [linkedin.com/in/bahattinyunus](https://www.linkedin.com/in/bahattinyunus/)
-- � **GitHub**: [github.com/bahattinyunus](https://github.com/bahattinyunus)
+- 💼 **LinkedIn**: [linkedin.com/in/yunuscetin](https://www.linkedin.com/in/yunuscetin/)
+-  **GitHub**: [github.com/bahattinyunus](https://github.com/bahattinyunus)
 - 📦 **Proje Repo**: [BTK-Hackathon26-Aura-Hockey-AR](https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR)
 
 **Teknik Uzmanlık**:

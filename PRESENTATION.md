@@ -138,4 +138,4 @@ Premium Oyun Deneyimi
 *"En iyi kod en etkili olandır."*
 
 **Bahattin Yunus Çetin** | IT Architect  
-linkedin.com/in/bahattinyunus
+linkedin.com/in/yunuscetin
