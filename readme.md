@@ -242,6 +242,9 @@ npm run build
 
 #### Faz 1: MVP ve Pazar Testi (0-6 ay)
 - ✅ Ucanble Hub'da yayın
+- ✅ **[NEW]** Gelişmiş AI Zorluk Sistemi (Dinamik Tepki Süresi)
+- ✅ **[NEW]** Kalıcı Skor Sistemi (Local Storage)
+- ✅ **[NEW]** Gelişmiş Görsel Efektler (Goal Particle Burst)
 - 📢 Sosyal medya kampanyaları (TikTok, Instagram Reels)
 - 🎓 Üniversite kampüslerinde demo etkinlikleri
 - 🎯 Hedef: 10,000 aktif kullanıcı

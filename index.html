@@ -72,11 +72,16 @@
             <!-- Right Side: Score and Webcam -->
             <div class="flex items-start gap-4">
                 <!-- Score Display -->
-                <div id="score-display"
-                    class="bg-black/40 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md text-3xl font-bold tracking-widest font-mono shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                    <span class="text-cyan-400">0</span>
-                    <span class="text-white mx-2">:</span>
-                    <span class="text-red-500">0</span>
+                <div class="flex flex-col items-center gap-1">
+                    <div id="score-display"
+                        class="bg-black/40 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md text-3xl font-bold tracking-widest font-mono shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                        <span class="text-cyan-400">0</span>
+                        <span class="text-white mx-2">:</span>
+                        <span class="text-red-500">0</span>
+                    </div>
+                    <div id="high-score" class="text-[10px] font-mono text-cyan-500/70 uppercase tracking-tighter">
+                        BEST_SYNC: <span id="high-score-val">0</span>
+                    </div>
                 </div>
 
                 <!-- Webcam Preview -->
@@ -158,11 +163,11 @@
                     Arenaya Bağlan
                 </button>
                 <div class="grid grid-cols-2 gap-4">
-                    <button
+                    <button id="calibration-btn"
                         class="py-3 px-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 rounded-lg font-mono text-xs uppercase tracking-widest transition-all">
                         Kalibrasyon
                     </button>
-                    <button
+                    <button id="data-logs-btn"
                         class="py-3 px-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 rounded-lg font-mono text-xs uppercase tracking-widest transition-all">
                         Veri Kayıtları
                     </button>

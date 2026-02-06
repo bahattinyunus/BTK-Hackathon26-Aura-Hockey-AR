@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Config } from './config.js';
 import { Effects } from './effects.js';
-import { PuckTrail, createCollisionParticles } from './trail-effects.js';
+import { PuckTrail, createCollisionParticles, createGoalEffect } from './trail-effects.js';
 
 export class Physics {
     constructor() {
@@ -294,15 +294,23 @@ export class Physics {
     updateAI(delta) {
         if (!this.aiPaddle || !this.puck) return;
 
+        // Dynamic Reaction Delay based on difficulty
+        let reactionDelay = this.AI_REACTION_DELAY;
+        if (this.aiSpeed) {
+            if (this.aiSpeed < 0.6) reactionDelay = 0.12; // Easy
+            else if (this.aiSpeed > 1.0) reactionDelay = 0.02; // Hard
+        }
+
         // --- AI FSM LOGIC with Reaction Latency ---
         this.aiReactionTimer += delta;
-        if (this.aiReactionTimer >= this.AI_REACTION_DELAY) {
+        if (this.aiReactionTimer >= reactionDelay) {
             this.aiReactionTimer = 0;
             this.processAIBehavior();
         }
 
         const speedMult = this.isFeverMode ? Config.Gameplay.feverSpeedMult : 1;
-        const speed = Config.Paddle.lerpSpeed * speedMult * delta;
+        const difficultyMult = this.aiSpeed || 1.0;
+        const speed = Config.Paddle.lerpSpeed * speedMult * difficultyMult * delta;
 
         // Move towards target (Lerp)
         this.aiPaddle.position.x += (this.aiTargetX - this.aiPaddle.position.x) * speed;
@@ -414,6 +422,7 @@ export class Physics {
 
             if (this.onScoreUpdate) this.onScoreUpdate(this.scorePlayer, this.scoreAI);
             this.sound.playGoalSound();
+            createGoalEffect(this.scene, this.puck.position, playerScored ? 0x00FFFF : 0xFF00FF);
             this.servePuck(playerScored ? 1 : -1);
         }
 
