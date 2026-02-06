@@ -369,15 +369,29 @@ gantt
 
 ## 📞 İletişim ve Destek
 
-### Canlı Demo
-- 🌐 **Web**: [Demo Link] (Ucanble Hub'da yayınlanacak)
-- 📹 **Video**: [YouTube Showcase]
-- 📦 **GitHub**: [github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR](https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR)
+### 👨‍💻 Geliştirici
 
-### İletişim
-- 📧 **Email**: [email]
-- 💬 **Discord**: [Discord Server]
-- 🐦 **Twitter**: [@handle]
+**Bahattin Yunus Çetin**  
+*IT Architect*
+
+Yapay zeka destekli otonom sistemler ve siber güvenlik alanlarında uzmanlaşmış yazılım mimarı. Aura Hockey AR, AI-powered web teknolojileri, gerçek zamanlı fizik simülasyonu ve kullanıcı deneyimi tasarımı konularındaki yetkinliğini sergileyen kapsamlı bir portföy çalışmasıdır.
+
+**Bağlantılar**:
+- � **LinkedIn**: [linkedin.com/in/bahattinyunus](https://www.linkedin.com/in/bahattinyunus/)
+- � **GitHub**: [github.com/bahattinyunus](https://github.com/bahattinyunus)
+- 📦 **Proje Repo**: [BTK-Hackathon26-Aura-Hockey-AR](https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR)
+
+**Teknik Uzmanlık**:
+- Frontend Architecture (Three.js, WebGL, Modern JavaScript)
+- AI/ML Integration (MediaPipe, TensorFlow.js, Computer Vision)
+- Real-time Systems & Game Development
+- Cloud Architecture & DevOps
+
+### 🤝 Proje Desteği
+
+- **Issues**: [GitHub Issues](https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/bahattinyunus/BTK-Hackathon26-Aura-Hockey-AR/discussions)
+- **Pull Requests**: Katkılarınızı bekliyoruz!
 
 ---
 
