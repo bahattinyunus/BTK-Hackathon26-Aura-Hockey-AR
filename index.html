@@ -31,14 +31,45 @@
     <!-- UI Layer -->
     <div id="ui-layer" class="flex flex-col justify-between p-6">
         <header class="text-white flex justify-between items-start">
-            <div>
-                <h1
-                    class="text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">
-                    AURA HOCKEY AR
-                </h1>
-                <p class="text-sm text-cyan-200 opacity-80 mt-1">Ankara Yapay Zeka Hackathon '26</p>
+            <!-- Left Side: Options Panel -->
+            <div class="flex gap-6">
+                <!-- Options Panel -->
+                <div class="bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10 w-48">
+                    <h3 class="text-cyan-400 font-bold text-sm mb-3 uppercase tracking-wider">OPTIONS</h3>
+
+                    <!-- Control Mode -->
+                    <div class="mb-4">
+                        <p class="text-white/60 text-xs mb-2 uppercase tracking-wide">CONTROL MODE</p>
+                        <div class="flex gap-2">
+                            <button id="control-hand"
+                                class="control-btn active px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">El</button>
+                            <button id="control-head"
+                                class="control-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Kafa</button>
+                            <button id="control-mouse"
+                                class="control-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Fare</button>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty -->
+                    <div>
+                        <p class="text-white/60 text-xs mb-2 uppercase tracking-wide">ZORLUK</p>
+                        <div class="flex flex-col gap-2">
+                            <button id="diff-easy"
+                                class="diff-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Kolay</button>
+                            <button id="diff-medium"
+                                class="diff-btn active px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Orta</button>
+                            <button id="diff-hard"
+                                class="diff-btn px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all">Zor</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-white/10 text-[9px] text-orange-400 font-mono">
+                        Fare ile kontrol aktif
+                    </div>
+                </div>
             </div>
 
+            <!-- Right Side: Score and Webcam -->
             <div class="flex items-start gap-4">
                 <!-- Score Display -->
                 <div id="score-display"
@@ -84,13 +115,14 @@
             <!-- Logs will flow here -->
         </div>
 
-        <!-- Controls / Instructions -->
+        <!-- Bottom Instruction Bar -->
         <div class="text-center mb-4">
-            <p
-                class="text-sm text-gray-400 bg-black/30 inline-block px-4 py-2 rounded-full backdrop-blur-sm border border-white/5">
-                Raketi kontrol etmek için <span class="text-cyan-400 font-bold">İşaret Parmağını</span> kaldır. Fren
-                ve Renk Değişimi için <span class="text-orange-400 font-bold">Yumruk</span> yap.
-            </p>
+            <div class="bg-black/70 backdrop-blur-md inline-block px-6 py-3 rounded-lg border border-white/10">
+                <p class="text-sm text-gray-300 font-mono">
+                    <span class="text-cyan-400 font-bold">İşaret parmağını</span> kaldırarak raketi kontrol et •
+                    <span class="text-orange-400 font-bold">Yumruk</span> yaparak özel yetenek kullan
+                </p>
+            </div>
         </div>
     </div>
 
@@ -158,6 +190,7 @@
         crossorigin="anonymous"></script>
 
     <!-- Main Logic -->
+    <script type="module" src="js/ui-controls.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 
