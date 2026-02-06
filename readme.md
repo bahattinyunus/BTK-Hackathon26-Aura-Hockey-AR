@@ -10,6 +10,8 @@
 > **"Yapay Zeka ile Oyun Deneyimini Yeniden Tanımlıyoruz"**  
 > *Eller serbest, kontrol zihinsel, deneyim sınırsız.*
 
+**📊 [Jüri Sunumu (Detaylı Proje Tanıtımı)](./PRESENTATION.md)**
+
 ---
 
 ## 📊 Hackathon Değerlendirme Özeti
