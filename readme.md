@@ -10,6 +10,12 @@
 > **"Yapay Zeka ile Oyun Deneyimini Yeniden Tanımlıyoruz"**  
 > *Eller serbest, kontrol zihinsel, deneyim sınırsız.*
 
+## 🎥 Demo Video
+
+[![Aura Hockey AR Demo](https://img.shields.io/badge/▶️_Demo_Video-Watch_Now-ff0000?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1QetjbLApR4l6Q946EUHcsBSL5Z-XdQt2/view)
+
+**Başlangıç Arayüzü Videosu** - Oyunun nasıl başlatıldığını ve el takibinin nasıl çalıştığını görün!
+
 ---
 
 ## 💡 Proje Genel Bakış
